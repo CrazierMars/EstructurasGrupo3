@@ -19,6 +19,7 @@ class producto {
         int getId();
         std::string getNombre(); 
         double getPrecio();
+        int getCantidad();
         producto* getSiguiente();
 
         // Setters 
