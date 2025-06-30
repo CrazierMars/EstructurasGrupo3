@@ -5,45 +5,36 @@
 
 class listaProductos {
     //atributos
-    private: 
-        producto* primero;
+private:
+    producto* primero;
     // metodos
-    public: 
-        //Constructor 
-        listaProductos(){
-            primero = nullptr;
-        }
-        // Destructor 
-        ~listaProductos(){
-            producto* actual = primero; 
-            while (actual != nullptr) {
-                producto* siguiente = actual->getSiguiente();
-                delete actual; 
-                actual = siguiente;
-            }
-        }
+public:
+    //Constructor
+    listaProductos(){
+        primero = nullptr;
+    }
+    // Destructor
+    ~listaProductos();
 
-        // Metodos de la lista 
+    // Metodos
+    producto* getPrimero();
+    producto* getUltimo();
+    //****Revisar metodos buscar, si es optimo separar por parametro o buscar solo por id
 
-        producto* getPrimero();
-        producto* getUltimo(); 
-        // *****
-        //****Revisar metodos buscar, si es optimo separar por parametro o buscar solo por id
-        //***** */
-        // Se implementa buscar por posible implementacion a futuro. 
-        producto* buscarProductoId(int pId); 
-        producto* buscarProductoNombre(const std::string& pNombre);
-        producto* buscarProductoPrecio(double pPrecio);
-        // Metodos de insercion 
-        void agregarProductoInicio(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
-        void agregarProductoFinal(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
-        void imprimirLista();
-        int contarProductos();
-        // ****
-        // Revisar si es optimo borrar por id o modularlo como los metodos buscar de aca arriba
-        void eliminarProducto(int pIdEliminar);
+    // Métodos de búsqueda
+    producto* buscarId(int pId);
+    producto* buscarNombre(const std::string& pNombre);
+    producto* buscarPrecio(double pPrecio);
 
+    // Metodos de inserción
+    void insertarInicio(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
+    void insertarFinal(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
+    void imprimirLista();
+    int contarProductos();
 
+    // Métodos de eliminación
+    // producto* eliminarPorId(int pIdEliminar);
+    producto* eliminarPorNombre(std::string& pNombreEliminar);
 };
 
-#endif // !LISTA_PRODUCTOS_H
+#endif // LISTA_PRODUCTOS_H
