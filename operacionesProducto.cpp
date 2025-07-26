@@ -1,36 +1,35 @@
 #include "producto.h"
 
 // Getters
-int producto::getId(){
+int producto::getId() {
     return id;
 }
-//Revisar esto
-std::string producto::getNombre(){
+std::string producto::getNombre() {
     return nombre;
 }
-double producto::getPrecio(){
+double producto::getPrecio() {
     return precio;
 }
-int producto::getCantidad(){
+int producto::getCantidad() {
     return cantidad;
 }
-producto* producto::getSiguiente(){
+producto* producto::getSiguiente() {
     return siguiente;
 }
 
 // Setters 
-void producto::setId(int pId){
-    id = pId;
+void producto::setId(int id) {
+    this->id = id;
 }
-void producto::setNombre(const std::string& pNombre){
-    nombre = pNombre;
+void producto::setNombre(const std::string& nombre) {
+    this->nombre = nombre;
 }
-void producto::setPrecio(double pPrecio){
-    precio = pPrecio;
+void producto::setPrecio(double precio) {
+    this->precio = precio;
 }
-void producto::setCantidad(int pCantidad){
-    cantidad = pCantidad;
+void producto::setCantidad(int cantidad) {
+    this->cantidad = cantidad;
 }
-void producto::setSiguiente(producto* nuevoSiguiente){
-    siguiente = nuevoSiguiente;
+void producto::setSiguiente(producto* siguiente) {
+    this->siguiente = siguiente;
 }

@@ -3,47 +3,43 @@
 
 #include "producto.h"
 
+using namespace std;
+
 class listaProductos {
-    //atributos
-    private: 
-        producto* primero;
-    // metodos
-    public: 
-        //Constructor 
-        listaProductos(){
-            primero = nullptr;
-        }
-        // Destructor 
-        ~listaProductos(){
-            producto* actual = primero; 
-            while (actual != nullptr) {
-                producto* siguiente = actual->getSiguiente();
-                delete actual; 
-                actual = siguiente;
-            }
-        }
+private:
+    producto* primero;
 
-        // Metodos de la lista 
+public:
+    //Constructor
+    listaProductos(){
+        primero = nullptr;
+    }
 
-        producto* getPrimero();
-        producto* getUltimo(); 
-        // *****
-        //****Revisar metodos buscar, si es optimo separar por parametro o buscar solo por id
-        //***** */
-        // Se implementa buscar por posible implementacion a futuro. 
-        producto* buscarProductoId(int pId); 
-        producto* buscarProductoNombre(const std::string& pNombre);
-        producto* buscarProductoPrecio(double pPrecio);
-        // Metodos de insercion 
-        void agregarProductoInicio(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
-        void agregarProductoFinal(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
-        void imprimirLista();
-        int contarProductos();
-        // ****
-        // Revisar si es optimo borrar por id o modularlo como los metodos buscar de aca arriba
-        void eliminarProducto(int pIdEliminar);
+    // Destructor
+    ~listaProductos();
 
+    // Metodos
+    producto* getPrimero();
+    producto* getUltimo();
 
+    // Métodos de búsqueda
+    producto* buscarId(int id);
+    producto* buscarNombre(string nombre);
+    producto* buscarPrecio(double precio);
+
+    // Metodos de inserción
+    void insertarInicio(int id, string nombre, double precio, int cantidad);
+    void insertarFinal(int id, string nombre, double precio, int cantidad);
+
+    // Métodos de eliminación
+    producto* eliminar(string value, string target);
+
+    // Métodos de impresión
+    void imprimirLista();
+    int contarProductos();
+    bool imprimirVacia();
+
+    bool estaVacia();
 };
 
-#endif // !LISTA_PRODUCTOS_H
+#endif // LISTA_PRODUCTOS_H
