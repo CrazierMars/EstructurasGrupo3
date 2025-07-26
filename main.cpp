@@ -1,12 +1,16 @@
+#include <windows.h>
+#include <iostream>
 #include "listaProductos.h"
 #include "producto.h"
 #include "colaClientes.h"
 #include "cliente.h"
-#include <iostream>
 
 using namespace std;
 
 void mostrarMenu() {
+    SetConsoleOutputCP(CP_UTF8);
+    setlocale(LC_ALL, "es_ES.UTF-8");
+
     cout << "\n--- Menú Principal ---" << endl;
     cout << "1. Agregar producto al catálogo" << endl;
     cout << "2. Eliminar producto del catálogo" << endl;
@@ -46,6 +50,7 @@ int main() {
     do {
         mostrarMenu();
         cin >> opcion;
+        cin.ignore();
         cout << endl;
 
         switch (opcion) {
@@ -93,12 +98,12 @@ int main() {
                 cout << "Nombre: "; cin >> nombre;
                 cout << "Apellidos: "; cin >> apellidos;
                 cout << "Cédula: "; cin >> cedula;
-                cout << "Edad: "; cin >> edad;
+                cout << "Edad: "; cin >> edad; cin.ignore();
                 cout << "Prioridad: \n1-Ordinario\n2-Regular\n3-Preferencial "; cin >> prioridad;
 
                 cliente* nuevoCliente = new cliente(nombre, apellidos, cedula, edad, prioridad);
                 cout << "¿Cuántos productos va a comprar?: ";
-                cin >> nprod;
+                cin >> nprod; cin.ignore();
                 
                 for (int i = 0; i < nprod; ++i) {
                     cout << "Nombre del producto a comprar: "; getline(cin, prodNombre);

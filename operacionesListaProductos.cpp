@@ -109,7 +109,7 @@ producto *listaProductos::eliminar(string value, string target) {
     producto* actual = primero;
     
     if (target == "nombre") {
-        while(actual != nullptr && actual->getNombre() != value) {
+        while (actual != nullptr && actual->getNombre() != value) {
             anterior = actual;
             actual = actual->getSiguiente();
         }
@@ -117,7 +117,7 @@ producto *listaProductos::eliminar(string value, string target) {
 
     if (target == "id") {
         int idEliminar = stoi(value);
-        while(actual != nullptr && actual->getId() != idEliminar) {
+        while (actual != nullptr && actual->getId() != idEliminar) {
             anterior = actual;
             actual = actual->getSiguiente();
         }
