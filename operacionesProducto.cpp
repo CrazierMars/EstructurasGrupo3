@@ -1,6 +1,5 @@
 #include "producto.h"
 
-// Getters
 int producto::getId() {
     return id;
 }
@@ -17,7 +16,6 @@ producto* producto::getSiguiente() {
     return siguiente;
 }
 
-// Setters 
 void producto::setId(int id) {
     this->id = id;
 }

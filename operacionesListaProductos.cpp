@@ -10,10 +10,9 @@ listaProductos::~listaProductos() {
         delete actual;
         actual = siguiente;
     }
-    primero = nullptr; // Opcional, pero asegura que la lista quede vacía
+    primero = nullptr;
 }
 
-// Getters
 producto* listaProductos::getPrimero() {
     return primero;
 }
@@ -28,12 +27,10 @@ producto* listaProductos::getUltimo() {
     return actual;
 }
 
-// Metodos de búsqueda
 producto* listaProductos::buscarId(int id) {
-    if (imprimirVacia()) {
+    if (estaVacia()) {
         return nullptr;
     }
-
     producto* actual = primero;
     while (actual != nullptr) {
         if (actual->getId() == id) {
@@ -45,10 +42,9 @@ producto* listaProductos::buscarId(int id) {
     cout << "Producto con ID " << id << " no encontrado." << endl;
 }
 producto* listaProductos::buscarNombre(string nombre) {
-    if (imprimirVacia()) {
+    if (estaVacia()) {
         return nullptr;
     }
-
     producto* actual = primero;
     while (actual != nullptr) {
         if (actual->getNombre() == nombre) {
@@ -60,10 +56,9 @@ producto* listaProductos::buscarNombre(string nombre) {
     cout << "Producto con nombre " << nombre << "no encontrado." << endl;
 }
 producto* listaProductos::buscarPrecio(double precio) {
-    if (imprimirVacia()) {
+    if (estaVacia()) {
         return nullptr;
     }
-
     producto* actual = primero; 
     while (actual != nullptr) {
         if (actual->getPrecio() == precio) {
@@ -74,21 +69,34 @@ producto* listaProductos::buscarPrecio(double precio) {
     return nullptr; 
     cout << "Producto con precio " << precio << "no encontrado." << endl;
 }
+producto* listaProductos::buscarCantidad(int cantidad) {
+    if (estaVacia()) {
+        return nullptr;
+    }
+    producto* actual = primero; 
+    while (actual != nullptr) {
+        if (actual->getCantidad() == cantidad) {
+            return actual;
+        }
+        actual = actual->getSiguiente();
+    }
+    return nullptr; 
+    cout << "Producto con cantidad " << cantidad << " no encontrado." << endl;
+}
 
-// Metodos de inserción
-void listaProductos::insertarInicio(int id, string nombre, double precio, int cantidad) {
-    if (buscarId(id) != nullptr) {
-        cout << "Ya existe un producto con el mismo ID." << endl;
-        return;
+void listaProductos::insertarInicio(string nombre, double precio, int cantidad) {
+    int id = generarId();
+    while (buscarId(id) != nullptr) {
+        id = generarId();
     }
     producto* nuevoProducto = new producto(id, nombre, precio, cantidad);
     nuevoProducto->setSiguiente(primero);
     primero = nuevoProducto;
 }
-void listaProductos::insertarFinal(int id, string nombre, double precio, int cantidad) {
-    if (buscarId(id) != nullptr) {
-        cout << "Ya existe un producto con el mismo ID." << endl;
-        return;
+void listaProductos::insertarFinal(string nombre, double precio, int cantidad) {
+    int id = generarId();
+    while (buscarId(id) != nullptr) {
+        id = generarId();
     }
     producto* nuevoProducto = new producto(id, nombre, precio, cantidad);
     if (primero == nullptr) {
@@ -99,7 +107,6 @@ void listaProductos::insertarFinal(int id, string nombre, double precio, int can
     }
 }
 
-// Métodos de eliminación
 producto *listaProductos::eliminar(string value, string target) {
     if (imprimirVacia()) {
         return nullptr;
@@ -170,9 +177,13 @@ bool listaProductos::estaVacia() {
 
 bool listaProductos::imprimirVacia() {
     if (estaVacia()) {
-        cout << "La lista esta vacia." << endl;
+        cout << "La lista esta vacía." << endl;
         return true;
     }
 
     return false;
+}
+
+int listaProductos::generarId() {
+    return rand() % 90000 + 10000;
 }

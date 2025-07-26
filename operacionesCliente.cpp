@@ -73,12 +73,13 @@ void cliente::setSiguiente(cliente* siguiente) {
     this->siguiente = siguiente; 
 }
 
-void cliente::agregarProducto(int id, string nombre, double precio, int cantidad) {
-    productos->insertarFinal(id, nombre, precio, cantidad);
+void cliente::agregarProducto(string nombre, double precio, int cantidad) {
+    productos->insertarFinal(nombre, precio, cantidad);
 }
 
 void cliente::imprimir() {
-    cout << "Nombre: " << nombre << " " << apellidos << " | Cédula: " << cedula << " | Edad: " << edad << " | Prioridad: " << prioridad << endl;
+    string prioridadStr = (prioridad == 1) ? "Ordinario" : (prioridad == 2) ? "Regular" : "Preferencial";
+    cout << "Nombre: " << nombre << " " << apellidos << " | Cédula: " << cedula << " | Edad: " << edad << " | Prioridad: " << prioridadStr << endl;
     cout << "Productos comprados:" << endl;
     productos->imprimirLista();
 }

@@ -12,7 +12,6 @@ private:
     producto* siguiente;
     
 public:
-    // Constructor
     producto(int pId, const std::string& pNombre, double pPrecio, int pCantidad){
         id = pId;
         nombre = pNombre;
@@ -21,14 +20,12 @@ public:
         siguiente = nullptr;
     }
 
-    // Getters
     int getId();
     std::string getNombre();
     double getPrecio();
     int getCantidad();
     producto* getSiguiente();
 
-    // Setters
     void setId(int pId);
     void setNombre(const std::string& pNombre);
     void setPrecio(double pPrecio);
@@ -36,4 +33,4 @@ public:
     void setSiguiente(producto* nuevoSiguiente);
 };
 
-#endif // PRODUCTO_H
+#endif

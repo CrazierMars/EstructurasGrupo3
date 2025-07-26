@@ -58,8 +58,7 @@ int main() {
                 cout << "Nombre del producto: "; getline(cin, nombre);
                 cout << "Precio: "; cin >> precio;
                 cout << "Cantidad: "; cin >> cantidad;
-                // Buscar libreria que nos genere un ID único
-                catalogo.insertarFinal(1, nombre, precio, cantidad);
+                catalogo.insertarFinal(nombre, precio, cantidad);
                 cout << "\nProducto agregado al catálogo.\n";
                 break;
             
@@ -106,28 +105,30 @@ int main() {
                 cin >> nprod; cin.ignore();
                 
                 for (int i = 0; i < nprod; ++i) {
-                    cout << "Nombre del producto a comprar: "; getline(cin, prodNombre);
-                    producto* prod = catalogo.buscarNombre(prodNombre);
-
-                    if (prod) {
-                        if (prod->getCantidad() < 1) {
-                            cout << "No hay stock disponible de ese producto.\n";
-                            continue;
+                    producto* prod = nullptr;
+                    do {
+                        cout << "Nombre del producto a comprar: "; getline(cin, prodNombre);
+                        prod = catalogo.buscarNombre(prodNombre);
+                        if (!prod) {
+                            cout << "\nProducto no encontrado en catálogo. Intente nuevamente.\n\n";
                         }
+                    } while (!prod);
 
-                        bool cantidadValida = false;
-                        while (!cantidadValida) {
-                            cout << "Cantidad: "; cin >> cant;
+                    if (prod->getCantidad() < 1) {
+                        cout << "No hay stock disponible de ese producto.\n";
+                        continue;
+                    }
 
-                            if (cant <= prod->getCantidad() && cant > 0) {
-                                nuevoCliente->agregarProducto(1, prod->getNombre(), prod->getPrecio(), cant);
-                                cantidadValida = true;
-                            } else {
-                                cout << "\nSolo hay " << prod->getCantidad() << " unidades disponibles. Ingrese una cantidad válida.\n";
-                            }
+                    bool cantidadValida = false;
+                    while (!cantidadValida) {
+                        cout << "Cantidad: "; cin >> cant;
+
+                        if (cant <= prod->getCantidad() && cant > 0) {
+                            nuevoCliente->agregarProducto(prod->getNombre(), prod->getPrecio(), cant);
+                            cantidadValida = true;
+                        } else {
+                            cout << "\nSolo hay " << prod->getCantidad() << " unidades disponibles. Ingrese una cantidad válida.\n";
                         }
-                    } else {
-                        cout << "Producto no encontrado en catálogo.\n";
                     }
                 }
 
@@ -143,7 +144,7 @@ int main() {
                     break;
                 }
 
-                cliente* atendido = cola.quitar();
+                cliente* atendido = cola.quitarPorPrioridad();
 
                 if (atendido) {
                     producto* prodCliente = atendido->getProductos()->getPrimero();
