@@ -10,8 +10,17 @@ private:
     double precio;
     int cantidad;
     producto* siguiente;
-    
+
 public:
+    // Constructor por defecto
+    producto() {
+        id = 0;
+        nombre = "";
+        precio = 0.0;
+        cantidad = 0;
+        siguiente = nullptr;
+    }
+    // Constructor parametrizado
     producto(int pId, const std::string& pNombre, double pPrecio, int pCantidad){
         id = pId;
         nombre = pNombre;

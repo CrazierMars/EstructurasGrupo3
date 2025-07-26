@@ -10,7 +10,6 @@ using namespace std;
 void mostrarMenu() {
     SetConsoleOutputCP(CP_UTF8);
     setlocale(LC_ALL, "es_ES.UTF-8");
-
     cout << "\n--- Menú Principal ---" << endl;
     cout << "1. Agregar producto al catálogo" << endl;
     cout << "2. Eliminar producto del catálogo" << endl;
@@ -18,9 +17,109 @@ void mostrarMenu() {
     cout << "4. Agregar cliente a la cola" << endl;
     cout << "5. Atender cliente (quitar de la cola)" << endl;
     cout << "6. Mostrar clientes en cola" << endl;
-    cout << "7. Salir" << endl;
+    cout << "7. Ordenar catálogo" << endl;
+    cout << "8. Salir" << endl;
     cout << "Seleccione una opción: ";
 }
+
+void MenuOrdenamientos(){
+    SetConsoleOutputCP(CP_UTF8);
+    setlocale(LC_ALL, "es_ES.UTF-8");
+    cout << "\n--- Menú de Ordenamientos ---" << endl;
+    cout << "1. Ordenamiento por Inserción" << endl;
+    cout << "2. Ordenamiento por Selección" << endl;
+    cout << "3. Ordenamiento por Burbuja" << endl;
+    cout << "4. Ordenamiento por Mezcla" << endl;
+    cout << "5. Volver." << endl;
+    cout << "Seleccione una opción: " << endl;
+}
+
+void MenuOrdenamientosInsercion() {
+    SetConsoleOutputCP(CP_UTF8);
+    setlocale(LC_ALL, "es_ES.UTF-8");
+    cout << "\n--- Ordenamiento por Inserción ---" << endl;
+    cout << "1. Ordenar por ID Ascendente" << endl;
+    cout << "2. Ordenar por ID Descendente" << endl;
+    cout << "3. Ordenar por Nombre Ascendente" << endl;
+    cout << "4. Ordenar por Nombre Descendente" << endl;
+    cout << "5. Ordenar por Precio Ascendente" << endl;
+    cout << "6. Ordenar por Precio Descendente" << endl;
+    cout << "7. Ordenar por Cantidad Ascendente" << endl;
+    cout << "8. Ordenar por Cantidad Descendente" << endl;
+    cout << "Seleccione una opción: ";
+}
+
+void ProcesarSeleccionInsercion(listaProductos& catalogo) {
+    int opcion;
+    cin >> opcion;
+    int n = catalogo.contarProductos();
+    if (n == 0) {
+        cout << "No hay productos para ordenar." << endl;
+        return;
+    }
+
+    producto** arrPtr = new producto*[n];
+    producto* actual = catalogo.getPrimero();
+    for (int i = 0; i < n && actual != nullptr; ++i) {
+        arrPtr[i] = actual;
+        actual = actual->getSiguiente();
+    }
+
+    producto* arr = new producto[n];
+    for (int i = 0; i < n; ++i) {
+        arr[i] = *arrPtr[i];
+    }
+
+    switch (opcion) {
+        case 1:
+            catalogo.OrdenamientoInsercionIdAsc(arr, n);
+            cout << "\nCatálogo ordenado por ID Ascendente:\n";
+            break;
+        case 2:
+            catalogo.OrdenamientoInsercionIdDesc(arr, n);
+            cout << "\nCatálogo ordenado por ID Descendente:\n";
+            break;
+        case 3:
+            catalogo.OrdenamientoInsercionNombreAsc(arr, n);
+            cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
+            break;
+        case 4:
+            catalogo.OrdenamientoInsercionNombreDesc(arr, n);
+            cout << "\nCatálogo ordenado por Nombre Descendente:\n";
+            break;
+        case 5:
+            catalogo.OrdenamientoInsercionPrecioAsc(arr, n);
+            cout << "\nCatálogo ordenado por Precio Ascendente:\n";
+            break;
+        case 6:
+            catalogo.OrdenamientoInsercionPrecioDesc(arr, n);
+            cout << "\nCatálogo ordenado por Precio Descendente:\n";
+            break;
+        case 7:
+            catalogo.OrdenamientoInsercionCantidadAsc(arr, n);
+            cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
+            break;
+        case 8:
+            catalogo.OrdenamientoInsercionCantidadDesc(arr, n);
+            cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
+            break;
+        default:
+            cout << "Opción no válida." << endl;
+            delete[] arrPtr;
+            delete[] arr;
+            return;
+    }
+    
+    for (int i = 0; i < n; ++i) {
+        cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
+             << ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
+    }
+
+    delete[] arrPtr;
+    delete[] arr;
+}
+
+
 
 void imprimirFactura(cliente* cliente) {
     cout << "\n--- Factura del cliente ---" << endl;
@@ -174,9 +273,17 @@ int main() {
                 cout << "--- Clientes en cola ---\n";
                 cola.imprimirCola();
                 break;
+            case '7':
+                if (catalogo.estaVacia()) {
+                    cout << "El catálogo está vacío. No se puede ordenar.\n";
+                    break;
+                }
+                MenuOrdenamientosInsercion();
+                ProcesarSeleccionInsercion(catalogo);
+                break;
             
         }
-    } while (opcion != '7');
+    } while (opcion != '8');
 
     cout << "Programa finalizado.\n";
     return 0;
