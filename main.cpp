@@ -1,78 +1,177 @@
 #include "listaProductos.h"
+#include "producto.h"
+#include "colaClientes.h"
+#include "cliente.h"
 #include <iostream>
-#include <thread>
-#include <chrono>
 
 using namespace std;
 
 void mostrarMenu() {
-    this_thread::sleep_for(chrono::seconds(1));
-    cout << "\n==============================\n";
-    cout << "---- MENU PRINCIPAL ----\n";
-    cout << "1. Agregar producto al inicio\n";
-    cout << "2. Agregar producto al final\n";
-    cout << "3. Eliminar producto por nombre\n";
-    cout << "4. Mostrar lista de productos\n";
-    cout << "0. Salir\n";
-    cout << "==============================\n";
-    cout << "\nSeleccione una opcion: ";
+    cout << "\n--- Menú Principal ---" << endl;
+    cout << "1. Agregar producto al catálogo" << endl;
+    cout << "2. Eliminar producto del catálogo" << endl;
+    cout << "3. Mostrar catálogo" << endl;
+    cout << "4. Agregar cliente a la cola" << endl;
+    cout << "5. Atender cliente (quitar de la cola)" << endl;
+    cout << "6. Mostrar clientes en cola" << endl;
+    cout << "7. Salir" << endl;
+    cout << "Seleccione una opción: ";
 }
 
-int main (){
-    listaProductos lista;
-    int opcion, id, cantidad;
-    string nombre;
+void imprimirFactura(cliente* cliente) {
+    cout << "\n--- Factura del cliente ---" << endl;
+    cliente->imprimir();
+    double total = 0;
+
+    producto* prod = cliente->getProductos()->getPrimero();
+
+    while (prod != nullptr) {
+        total += prod->getPrecio() * prod->getCantidad();
+        prod = prod->getSiguiente();
+    }
+
+    cout << "Total a cancelar: " << total << endl;
+    cout << "--------------------------\n";
+}
+
+int main() {
+    colaClientes cola;
+    listaProductos catalogo;
+    char opcion;
+
+    string nombre, apellidos, cedula, prodNombre;
     double precio;
+    int cantidad, edad, nprod, cant, prioridad;
 
     do {
         mostrarMenu();
         cin >> opcion;
-        switch (opcion) {
-            case 1: // Insertar al inicio
-                cout << "Ingrese el id: ";
-                cin >> id;
-                cout << "Ingrese el nombre: ";
-                cin >> nombre;
-                cout << "Ingrese el precio: ";
-                cin >> precio;
-                cout << "Ingrese la cantidad: ";
-                cin >> cantidad;
-                lista.insertarInicio(id, nombre, precio, cantidad);
-                break;
-
-            case 2: // Insertar al final
-                cout << "Ingrese el id: ";
-                cin >> id;
-                cout << "Ingrese el nombre: ";
-                cin >> nombre;
-                cout << "Ingrese el precio: ";
-                cin >> precio;
-                cout << "Ingrese la cantidad: ";
-                cin >> cantidad;
-                lista.insertarFinal(id, nombre, precio, cantidad);
-                break;
-
-            case 3: // Eliminar por nombre
-                cout << "Ingrese el nombre del producto a eliminar: ";
-                cin >> nombre;
-                lista.eliminarPorNombre(nombre);
-                break;
-
-            case 4: // Mostrar lista
-                lista.imprimirLista();
-                break;
-
-            case 0: // Salir
-                cout << "Saliendo del programa..." << endl;
-                lista.~listaProductos();
-                break;
-
-            default:
-                cout << "Opcion invalida. Por favor, intente de nuevo." << endl;
-                break;
-        }
         cout << endl;
-    } while (opcion != 0);
 
+        switch (opcion) {
+            case '1': 
+                cout << "Nombre del producto: "; getline(cin, nombre);
+                cout << "Precio: "; cin >> precio;
+                cout << "Cantidad: "; cin >> cantidad;
+                // Buscar libreria que nos genere un ID único
+                catalogo.insertarFinal(1, nombre, precio, cantidad);
+                cout << "\nProducto agregado al catálogo.\n";
+                break;
+            
+            case '2':
+                if (catalogo.estaVacia()) {
+                    cout << "El catálogo está vacío\n";
+                    break;
+                }
+
+                cout << "Nombre del producto a eliminar: "; getline(cin, nombre);
+
+                if (catalogo.eliminar(nombre, "nombre")) {
+                    cout << "Producto eliminado.\n";
+                } else {
+                    cout << "Producto no encontrado.\n";
+                }
+
+                break;
+            
+            case '3': 
+                if (catalogo.estaVacia()) {
+                    cout << "El catálogo está vacío\n";
+                    break;
+                }
+
+                cout << "--- Catálogo de productos ---\n";
+                catalogo.imprimirLista();
+                break;
+            
+            case '4': {
+                if (catalogo.estaVacia()) {
+                    cout << "No se puede agregar clientes, el catálogo está vacío.\n";
+                    break;
+                }
+
+                cout << "Nombre: "; cin >> nombre;
+                cout << "Apellidos: "; cin >> apellidos;
+                cout << "Cédula: "; cin >> cedula;
+                cout << "Edad: "; cin >> edad;
+                cout << "Prioridad: \n1-Ordinario\n2-Regular\n3-Preferencial "; cin >> prioridad;
+
+                cliente* nuevoCliente = new cliente(nombre, apellidos, cedula, edad, prioridad);
+                cout << "¿Cuántos productos va a comprar?: ";
+                cin >> nprod;
+                
+                for (int i = 0; i < nprod; ++i) {
+                    cout << "Nombre del producto a comprar: "; getline(cin, prodNombre);
+                    producto* prod = catalogo.buscarNombre(prodNombre);
+
+                    if (prod) {
+                        if (prod->getCantidad() < 1) {
+                            cout << "No hay stock disponible de ese producto.\n";
+                            continue;
+                        }
+
+                        bool cantidadValida = false;
+                        while (!cantidadValida) {
+                            cout << "Cantidad: "; cin >> cant;
+
+                            if (cant <= prod->getCantidad() && cant > 0) {
+                                nuevoCliente->agregarProducto(1, prod->getNombre(), prod->getPrecio(), cant);
+                                cantidadValida = true;
+                            } else {
+                                cout << "\nSolo hay " << prod->getCantidad() << " unidades disponibles. Ingrese una cantidad válida.\n";
+                            }
+                        }
+                    } else {
+                        cout << "Producto no encontrado en catálogo.\n";
+                    }
+                }
+
+                cola.insertar(nuevoCliente);
+
+                cout << "\nCliente agregado a la cola.\n";
+                break;
+            }
+            
+            case '5': {
+                if (cola.estaVacia()) {
+                    cout << "No hay clientes en la cola.\n";
+                    break;
+                }
+
+                cliente* atendido = cola.quitar();
+
+                if (atendido) {
+                    producto* prodCliente = atendido->getProductos()->getPrimero();
+
+                    while (prodCliente != nullptr) {
+                        producto* prodCatalogo = catalogo.buscarNombre(prodCliente->getNombre());
+                        if (prodCatalogo) {
+                            int nuevaCantidad = prodCatalogo->getCantidad() - prodCliente->getCantidad();
+                            if (nuevaCantidad < 0) nuevaCantidad = 0;
+                            prodCatalogo->setCantidad(nuevaCantidad);
+                        }
+                        prodCliente = prodCliente->getSiguiente();
+                    }
+
+                    imprimirFactura(atendido);
+                    delete atendido;
+                }
+
+                break;
+            }
+            case '6': 
+                if (cola.estaVacia()) {
+                    cout << "No hay clientes en la cola.\n";
+                    break;
+                }
+
+                cout << "--- Clientes en cola ---\n";
+                cola.imprimirCola();
+                break;
+            
+        }
+    } while (opcion != '7');
+
+    cout << "Programa finalizado.\n";
     return 0;
 }

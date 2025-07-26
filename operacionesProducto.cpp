@@ -18,18 +18,18 @@ producto* producto::getSiguiente() {
 }
 
 // Setters 
-void producto::setId(int pId) {
-    id = pId;
+void producto::setId(int id) {
+    this->id = id;
 }
-void producto::setNombre(const std::string& pNombre) {
-    nombre = pNombre;
+void producto::setNombre(const std::string& nombre) {
+    this->nombre = nombre;
 }
-void producto::setPrecio(double pPrecio) {
-    precio = pPrecio;
+void producto::setPrecio(double precio) {
+    this->precio = precio;
 }
-void producto::setCantidad(int pCantidad) {
-    cantidad = pCantidad;
+void producto::setCantidad(int cantidad) {
+    this->cantidad = cantidad;
 }
-void producto::setSiguiente(producto* nuevoSiguiente) {
-    siguiente = nuevoSiguiente;
+void producto::setSiguiente(producto* siguiente) {
+    this->siguiente = siguiente;
 }
