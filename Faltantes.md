@@ -1,6 +1,6 @@
 - Harold
-- Generar un uuid para cada registro
-- Cuando se inserta un cliente hay que ordenar por prioridad
+- Generar un uuid para cada registro - listo
+- Cuando se inserta un cliente hay que ordenar por prioridad - listo
 - Investigar cola de prioridad
 
 - Ordenamientos y búsquedas
@@ -8,7 +8,7 @@
         id *
         nombre *
         precio * 
-        cantidad - Harold
+        cantidad - Harold listo
 
     - Busqueda Binaria - Rafa
         id 

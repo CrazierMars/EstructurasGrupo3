@@ -36,7 +36,7 @@ public:
     void setProductos(listaProductos* productos);
     void setSiguiente(cliente* siguiente);
 
-    void agregarProducto(int id, string nombre, double precio, int cantidad);
+    void agregarProducto(string nombre, double precio, int cantidad);
     void imprimir();
 };
 

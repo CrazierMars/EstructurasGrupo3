@@ -13,6 +13,7 @@ public:
     ~colaClientes();
     void insertar(cliente* cliente);
     cliente* quitar();
+    cliente* quitarPorPrioridad();
     cliente* verFrente();
     bool estaVacia();
     void imprimirCola();
