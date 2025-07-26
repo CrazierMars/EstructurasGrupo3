@@ -35,6 +35,17 @@ public:
 
     bool estaVacia();
     int generarId();
+
+    // Métodos de ordenamiento
+    //Ordenamiento por Insercion
+    void OrdenamientoInsercionIdAsc(producto arr[], int n);
+    void OrdenamientoInsercionIdDesc(producto arr[], int n);
+    void OrdenamientoInsercionNombreAsc(producto arr[], int n);
+    void OrdenamientoInsercionNombreDesc(producto arr[], int n);
+    void OrdenamientoInsercionPrecioAsc(producto arr[], int n);
+    void OrdenamientoInsercionPrecioDesc(producto arr[], int n);
+    void OrdenamientoInsercionCantidadAsc(producto arr[], int n);
+    void OrdenamientoInsercionCantidadDesc(producto arr[], int n);
 };
 
 #endif // LISTA_PRODUCTOS_H

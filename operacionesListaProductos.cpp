@@ -187,3 +187,101 @@ bool listaProductos::imprimirVacia() {
 int listaProductos::generarId() {
     return rand() % 90000 + 10000;
 }
+
+    // Métodos de ordenamiento
+    //Ordenamiento por Insercion
+    void listaProductos::OrdenamientoInsercionIdAsc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getId() > temp.getId()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionIdDesc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getId() < temp.getId()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionNombreAsc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getNombre() > temp.getNombre()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionNombreDesc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getNombre() < temp.getNombre()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionPrecioAsc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getPrecio() > temp.getPrecio()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionPrecioDesc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getPrecio() < temp.getPrecio()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionCantidadAsc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getCantidad() > temp.getCantidad()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
+
+void listaProductos::OrdenamientoInsercionCantidadDesc(producto arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        producto temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j].getCantidad() < temp.getCantidad()) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+}
