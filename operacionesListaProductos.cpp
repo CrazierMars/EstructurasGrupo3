@@ -327,12 +327,85 @@ void listaProductos::nombre(producto arr[], int n) { \
     }); \
 }
 
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaIdAsc, getId, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaIdDesc, getId, >)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaNombreAsc, getNombre, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaNombreDesc, getNombre, >)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaPrecioAsc, getPrecio, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaPrecioDesc, getPrecio, >)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaCantidadAsc, getCantidad, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaCantidadDesc, getCantidad, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaIdAsc, getId, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaIdDesc, getId, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaNombreAsc, getNombre, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaNombreDesc, getNombre, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaPrecioAsc, getPrecio, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaPrecioDesc, getPrecio, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadAsc, getCantidad, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadDesc, getCantidad, >)
+
+void listaProductos::ordenamientoBurbujaIdAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getId() > arr[j + 1].getId()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaIdDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getId() < arr[j + 1].getId()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaNombreAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getNombre() > arr[j + 1].getNombre()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaNombreDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getNombre() < arr[j + 1].getNombre()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaPrecioAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getPrecio() > arr[j + 1].getPrecio()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaPrecioDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getPrecio() < arr[j + 1].getPrecio()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaCantidadAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getCantidad() > arr[j + 1].getCantidad()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+void listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i)
+        for (int j = 0; j < n - i - 1; ++j)
+            if (arr[j].getCantidad() < arr[j + 1].getCantidad()) {
+                producto temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
 

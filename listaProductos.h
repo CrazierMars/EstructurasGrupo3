@@ -36,14 +36,14 @@ public:
     bool estaVacia();
     int generarId();
 
-    void OrdenamientoMezclaIdAsc(producto arr[], int n);
-    void OrdenamientoMezclaIdDesc(producto arr[], int n);
-    void OrdenamientoMezclaNombreAsc(producto arr[], int n);
-    void OrdenamientoMezclaNombreDesc(producto arr[], int n);
-    void OrdenamientoMezclaPrecioAsc(producto arr[], int n);
-    void OrdenamientoMezclaPrecioDesc(producto arr[], int n);
-    void OrdenamientoMezclaCantidadAsc(producto arr[], int n);
-    void OrdenamientoMezclaCantidadDesc(producto arr[], int n);
+    void ordenamientoMezclaIdAsc(producto arr[], int n);
+    void ordenamientoMezclaIdDesc(producto arr[], int n);
+    void ordenamientoMezclaNombreAsc(producto arr[], int n);
+    void ordenamientoMezclaNombreDesc(producto arr[], int n);
+    void ordenamientoMezclaPrecioAsc(producto arr[], int n);
+    void ordenamientoMezclaPrecioDesc(producto arr[], int n);
+    void ordenamientoMezclaCantidadAsc(producto arr[], int n);
+    void ordenamientoMezclaCantidadDesc(producto arr[], int n);
 
     void ordenamientoInsercionIdAsc(producto arr[], int n);
     void ordenamientoInsercionIdDesc(producto arr[], int n);
@@ -53,6 +53,15 @@ public:
     void ordenamientoInsercionPrecioDesc(producto arr[], int n);
     void ordenamientoInsercionCantidadAsc(producto arr[], int n);
     void ordenamientoInsercionCantidadDesc(producto arr[], int n);
+    
+    void ordenamientoBurbujaIdAsc(producto arr[], int n);
+    void ordenamientoBurbujaIdDesc(producto arr[], int n);
+    void ordenamientoBurbujaNombreAsc(producto arr[], int n);
+    void ordenamientoBurbujaNombreDesc(producto arr[], int n);
+    void ordenamientoBurbujaPrecioAsc(producto arr[], int n);
+    void ordenamientoBurbujaPrecioDesc(producto arr[], int n);
+    void ordenamientoBurbujaCantidadAsc(producto arr[], int n);
+    void ordenamientoBurbujaCantidadDesc(producto arr[], int n);
 };
 
 #endif // LISTA_PRODUCTOS_H
