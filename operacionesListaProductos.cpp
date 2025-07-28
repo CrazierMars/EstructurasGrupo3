@@ -188,9 +188,9 @@ int listaProductos::generarId() {
     return rand() % 90000 + 10000;
 }
 
-    // Métodos de ordenamiento
-    //Ordenamiento por Insercion
-    void listaProductos::OrdenamientoInsercionIdAsc(producto arr[], int n) {
+// Métodos de ordenamiento
+// Ordenamiento por Insercion
+void listaProductos::ordenamientoInsercionIdAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -202,7 +202,7 @@ int listaProductos::generarId() {
     }
 }
 
-void listaProductos::OrdenamientoInsercionIdDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionIdDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -214,7 +214,7 @@ void listaProductos::OrdenamientoInsercionIdDesc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionNombreAsc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionNombreAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -226,7 +226,7 @@ void listaProductos::OrdenamientoInsercionNombreAsc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionNombreDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionNombreDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -238,7 +238,7 @@ void listaProductos::OrdenamientoInsercionNombreDesc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionPrecioAsc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionPrecioAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -250,7 +250,7 @@ void listaProductos::OrdenamientoInsercionPrecioAsc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionPrecioDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionPrecioDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -262,7 +262,7 @@ void listaProductos::OrdenamientoInsercionPrecioDesc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionCantidadAsc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionCantidadAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -274,7 +274,7 @@ void listaProductos::OrdenamientoInsercionCantidadAsc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionCantidadDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;

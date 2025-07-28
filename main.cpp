@@ -22,7 +22,7 @@ void mostrarMenu() {
     cout << "Seleccione una opción: ";
 }
 
-void MenuOrdenamientos(){
+void menuOrdenamientos() {
     SetConsoleOutputCP(CP_UTF8);
     setlocale(LC_ALL, "es_ES.UTF-8");
     cout << "\n--- Menú de Ordenamientos ---" << endl;
@@ -31,10 +31,10 @@ void MenuOrdenamientos(){
     cout << "3. Ordenamiento por Burbuja" << endl;
     cout << "4. Ordenamiento por Mezcla" << endl;
     cout << "5. Volver." << endl;
-    cout << "Seleccione una opción: " << endl;
+    cout << "Seleccione una opción: ";
 }
 
-void MenuOrdenamientosInsercion() {
+void menuOrdenamientosInsercion() {
     SetConsoleOutputCP(CP_UTF8);
     setlocale(LC_ALL, "es_ES.UTF-8");
     cout << "\n--- Ordenamiento por Inserción ---" << endl;
@@ -49,14 +49,10 @@ void MenuOrdenamientosInsercion() {
     cout << "Seleccione una opción: ";
 }
 
-void ProcesarSeleccionInsercion(listaProductos& catalogo) {
+void procesarSeleccionInsercion(listaProductos& catalogo) {
     int opcion;
     cin >> opcion;
     int n = catalogo.contarProductos();
-    if (n == 0) {
-        cout << "No hay productos para ordenar." << endl;
-        return;
-    }
 
     producto** arrPtr = new producto*[n];
     producto* actual = catalogo.getPrimero();
@@ -72,35 +68,35 @@ void ProcesarSeleccionInsercion(listaProductos& catalogo) {
 
     switch (opcion) {
         case 1:
-            catalogo.OrdenamientoInsercionIdAsc(arr, n);
+            catalogo.ordenamientoInsercionIdAsc(arr, n);
             cout << "\nCatálogo ordenado por ID Ascendente:\n";
             break;
         case 2:
-            catalogo.OrdenamientoInsercionIdDesc(arr, n);
+            catalogo.ordenamientoInsercionIdDesc(arr, n);
             cout << "\nCatálogo ordenado por ID Descendente:\n";
             break;
         case 3:
-            catalogo.OrdenamientoInsercionNombreAsc(arr, n);
+            catalogo.ordenamientoInsercionNombreAsc(arr, n);
             cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
             break;
         case 4:
-            catalogo.OrdenamientoInsercionNombreDesc(arr, n);
+            catalogo.ordenamientoInsercionNombreDesc(arr, n);
             cout << "\nCatálogo ordenado por Nombre Descendente:\n";
             break;
         case 5:
-            catalogo.OrdenamientoInsercionPrecioAsc(arr, n);
+            catalogo.ordenamientoInsercionPrecioAsc(arr, n);
             cout << "\nCatálogo ordenado por Precio Ascendente:\n";
             break;
         case 6:
-            catalogo.OrdenamientoInsercionPrecioDesc(arr, n);
+            catalogo.ordenamientoInsercionPrecioDesc(arr, n);
             cout << "\nCatálogo ordenado por Precio Descendente:\n";
             break;
         case 7:
-            catalogo.OrdenamientoInsercionCantidadAsc(arr, n);
+            catalogo.ordenamientoInsercionCantidadAsc(arr, n);
             cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
             break;
         case 8:
-            catalogo.OrdenamientoInsercionCantidadDesc(arr, n);
+            catalogo.ordenamientoInsercionCantidadDesc(arr, n);
             cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
             break;
         default:
@@ -118,7 +114,6 @@ void ProcesarSeleccionInsercion(listaProductos& catalogo) {
     delete[] arrPtr;
     delete[] arr;
 }
-
 
 
 void imprimirFactura(cliente* cliente) {
@@ -153,15 +148,15 @@ int main() {
         cout << endl;
 
         switch (opcion) {
-            case '1': 
+            case '1': {
                 cout << "Nombre del producto: "; getline(cin, nombre);
                 cout << "Precio: "; cin >> precio;
                 cout << "Cantidad: "; cin >> cantidad;
                 catalogo.insertarFinal(nombre, precio, cantidad);
                 cout << "\nProducto agregado al catálogo.\n";
                 break;
-            
-            case '2':
+            }
+            case '2': {
                 if (catalogo.estaVacia()) {
                     cout << "El catálogo está vacío\n";
                     break;
@@ -174,10 +169,9 @@ int main() {
                 } else {
                     cout << "Producto no encontrado.\n";
                 }
-
                 break;
-            
-            case '3': 
+            }
+            case '3': {
                 if (catalogo.estaVacia()) {
                     cout << "El catálogo está vacío\n";
                     break;
@@ -186,7 +180,7 @@ int main() {
                 cout << "--- Catálogo de productos ---\n";
                 catalogo.imprimirLista();
                 break;
-            
+            }
             case '4': {
                 if (catalogo.estaVacia()) {
                     cout << "No se puede agregar clientes, el catálogo está vacío.\n";
@@ -236,7 +230,6 @@ int main() {
                 cout << "\nCliente agregado a la cola.\n";
                 break;
             }
-            
             case '5': {
                 if (cola.estaVacia()) {
                     cout << "No hay clientes en la cola.\n";
@@ -264,7 +257,7 @@ int main() {
 
                 break;
             }
-            case '6': 
+            case '6': {
                 if (cola.estaVacia()) {
                     cout << "No hay clientes en la cola.\n";
                     break;
@@ -273,15 +266,27 @@ int main() {
                 cout << "--- Clientes en cola ---\n";
                 cola.imprimirCola();
                 break;
-            case '7':
+            }
+            case '7': {
                 if (catalogo.estaVacia()) {
                     cout << "El catálogo está vacío. No se puede ordenar.\n";
                     break;
                 }
-                MenuOrdenamientosInsercion();
-                ProcesarSeleccionInsercion(catalogo);
+
+                char opcionOrdenamiento;
+                do {
+                    menuOrdenamientos();
+                    cin >> opcionOrdenamiento;
+
+                    switch (opcionOrdenamiento) {
+                        case '1':
+                            menuOrdenamientosInsercion();
+                            procesarSeleccionInsercion(catalogo);
+                            break;
+                    }
+                } while (opcionOrdenamiento != '5');
                 break;
-            
+            }
         }
     } while (opcion != '8');
 
