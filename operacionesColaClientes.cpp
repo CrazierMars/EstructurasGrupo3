@@ -46,6 +46,42 @@ cliente* colaClientes::quitar() {
     return temp;
 }
 
+cliente* colaClientes::quitarPorPrioridad() {
+    if (estaVacia()) {
+        std::cout << "La cola está vacía." << std::endl;
+        return nullptr;
+    }
+
+    cliente* actual = frente;
+    cliente* anterior = nullptr;
+    cliente* maxPrioridadCliente = frente;
+    cliente* anteriorMax = nullptr;
+
+    int maxPrioridad = frente->getPrioridad();
+
+    while (actual != nullptr) {
+        if (actual->getPrioridad() > maxPrioridad) {
+            maxPrioridad = actual->getPrioridad();
+            maxPrioridadCliente = actual;
+            anteriorMax = anterior;
+        }
+        anterior = actual;
+        actual = actual->getSiguiente();
+    }
+
+    // Eliminar el nodo de la cola
+    if (maxPrioridadCliente == frente) {
+        frente = frente->getSiguiente();
+        if (frente == nullptr) final = nullptr;
+    } else {
+        anteriorMax->setSiguiente(maxPrioridadCliente->getSiguiente());
+        if (maxPrioridadCliente == final) final = anteriorMax;
+    }
+
+    maxPrioridadCliente->setSiguiente(nullptr);
+    return maxPrioridadCliente;
+}
+
 cliente* colaClientes::verFrente() {
     return frente;
 }

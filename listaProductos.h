@@ -10,52 +10,32 @@ private:
     producto* primero;
 
 public:
-    //Constructor
     listaProductos(){
         primero = nullptr;
     }
 
-    // Destructor
     ~listaProductos();
 
-    // Metodos
     producto* getPrimero();
     producto* getUltimo();
 
-    // Métodos de búsqueda
     producto* buscarId(int id);
     producto* buscarNombre(string nombre);
     producto* buscarPrecio(double precio);
+    producto* buscarCantidad(int cantidad);
 
-    // Metodos de inserción
-    void insertarInicio(int id, string nombre, double precio, int cantidad);
-    void insertarFinal(int id, string nombre, double precio, int cantidad);
+    void insertarInicio(string nombre, double precio, int cantidad);
+    void insertarFinal(string nombre, double precio, int cantidad);
 
-    // Métodos de eliminación
     producto* eliminar(string value, string target);
 
-    // Métodos de impresión
     void imprimirLista();
     int contarProductos();
     bool imprimirVacia();
 
     bool estaVacia();
-<<<<<<< Updated upstream
-=======
     int generarId();
 
-    // Métodos de ordenamiento
-    //Ordenamiento por Insercion
-    void OrdenamientoInsercionIdAsc(producto arr[], int n);
-    void OrdenamientoInsercionIdDesc(producto arr[], int n);
-    void OrdenamientoInsercionNombreAsc(producto arr[], int n);
-    void OrdenamientoInsercionNombreDesc(producto arr[], int n);
-    void OrdenamientoInsercionPrecioAsc(producto arr[], int n);
-    void OrdenamientoInsercionPrecioDesc(producto arr[], int n);
-    void OrdenamientoInsercionCantidadAsc(producto arr[], int n);
-    void OrdenamientoInsercionCantidadDesc(producto arr[], int n);
-
-    //Ordenamiento por mezcla
     void OrdenamientoMezclaIdAsc(producto arr[], int n);
     void OrdenamientoMezclaIdDesc(producto arr[], int n);
     void OrdenamientoMezclaNombreAsc(producto arr[], int n);
@@ -64,7 +44,15 @@ public:
     void OrdenamientoMezclaPrecioDesc(producto arr[], int n);
     void OrdenamientoMezclaCantidadAsc(producto arr[], int n);
     void OrdenamientoMezclaCantidadDesc(producto arr[], int n);
->>>>>>> Stashed changes
+
+    void ordenamientoInsercionIdAsc(producto arr[], int n);
+    void ordenamientoInsercionIdDesc(producto arr[], int n);
+    void ordenamientoInsercionNombreAsc(producto arr[], int n);
+    void ordenamientoInsercionNombreDesc(producto arr[], int n);
+    void ordenamientoInsercionPrecioAsc(producto arr[], int n);
+    void ordenamientoInsercionPrecioDesc(producto arr[], int n);
+    void ordenamientoInsercionCantidadAsc(producto arr[], int n);
+    void ordenamientoInsercionCantidadDesc(producto arr[], int n);
 };
 
 #endif // LISTA_PRODUCTOS_H

@@ -11,10 +11,9 @@ listaProductos::~listaProductos() {
         delete actual;
         actual = siguiente;
     }
-    primero = nullptr; // Opcional, pero asegura que la lista quede vacía
+    primero = nullptr;
 }
 
-// Getters
 producto* listaProductos::getPrimero() {
     return primero;
 }
@@ -29,12 +28,10 @@ producto* listaProductos::getUltimo() {
     return actual;
 }
 
-// Metodos de búsqueda
 producto* listaProductos::buscarId(int id) {
-    if (imprimirVacia()) {
+    if (estaVacia()) {
         return nullptr;
     }
-
     producto* actual = primero;
     while (actual != nullptr) {
         if (actual->getId() == id) {
@@ -46,10 +43,9 @@ producto* listaProductos::buscarId(int id) {
     cout << "Producto con ID " << id << " no encontrado." << endl;
 }
 producto* listaProductos::buscarNombre(string nombre) {
-    if (imprimirVacia()) {
+    if (estaVacia()) {
         return nullptr;
     }
-
     producto* actual = primero;
     while (actual != nullptr) {
         if (actual->getNombre() == nombre) {
@@ -61,10 +57,9 @@ producto* listaProductos::buscarNombre(string nombre) {
     cout << "Producto con nombre " << nombre << "no encontrado." << endl;
 }
 producto* listaProductos::buscarPrecio(double precio) {
-    if (imprimirVacia()) {
+    if (estaVacia()) {
         return nullptr;
     }
-
     producto* actual = primero; 
     while (actual != nullptr) {
         if (actual->getPrecio() == precio) {
@@ -75,21 +70,34 @@ producto* listaProductos::buscarPrecio(double precio) {
     return nullptr; 
     cout << "Producto con precio " << precio << "no encontrado." << endl;
 }
+producto* listaProductos::buscarCantidad(int cantidad) {
+    if (estaVacia()) {
+        return nullptr;
+    }
+    producto* actual = primero; 
+    while (actual != nullptr) {
+        if (actual->getCantidad() == cantidad) {
+            return actual;
+        }
+        actual = actual->getSiguiente();
+    }
+    return nullptr; 
+    cout << "Producto con cantidad " << cantidad << " no encontrado." << endl;
+}
 
-// Metodos de inserción
-void listaProductos::insertarInicio(int id, string nombre, double precio, int cantidad) {
-    if (buscarId(id) != nullptr) {
-        cout << "Ya existe un producto con el mismo ID." << endl;
-        return;
+void listaProductos::insertarInicio(string nombre, double precio, int cantidad) {
+    int id = generarId();
+    while (buscarId(id) != nullptr) {
+        id = generarId();
     }
     producto* nuevoProducto = new producto(id, nombre, precio, cantidad);
     nuevoProducto->setSiguiente(primero);
     primero = nuevoProducto;
 }
-void listaProductos::insertarFinal(int id, string nombre, double precio, int cantidad) {
-    if (buscarId(id) != nullptr) {
-        cout << "Ya existe un producto con el mismo ID." << endl;
-        return;
+void listaProductos::insertarFinal(string nombre, double precio, int cantidad) {
+    int id = generarId();
+    while (buscarId(id) != nullptr) {
+        id = generarId();
     }
     producto* nuevoProducto = new producto(id, nombre, precio, cantidad);
     if (primero == nullptr) {
@@ -100,7 +108,6 @@ void listaProductos::insertarFinal(int id, string nombre, double precio, int can
     }
 }
 
-// Métodos de eliminación
 producto *listaProductos::eliminar(string value, string target) {
     if (imprimirVacia()) {
         return nullptr;
@@ -110,7 +117,7 @@ producto *listaProductos::eliminar(string value, string target) {
     producto* actual = primero;
     
     if (target == "nombre") {
-        while(actual != nullptr && actual->getNombre() != value) {
+        while (actual != nullptr && actual->getNombre() != value) {
             anterior = actual;
             actual = actual->getSiguiente();
         }
@@ -118,7 +125,7 @@ producto *listaProductos::eliminar(string value, string target) {
 
     if (target == "id") {
         int idEliminar = stoi(value);
-        while(actual != nullptr && actual->getId() != idEliminar) {
+        while (actual != nullptr && actual->getId() != idEliminar) {
             anterior = actual;
             actual = actual->getSiguiente();
         }
@@ -171,23 +178,20 @@ bool listaProductos::estaVacia() {
 
 bool listaProductos::imprimirVacia() {
     if (estaVacia()) {
-        cout << "La lista esta vacia." << endl;
+        cout << "La lista esta vacía." << endl;
         return true;
     }
 
     return false;
-<<<<<<< Updated upstream
-}
-=======
 }
 
 int listaProductos::generarId() {
     return rand() % 90000 + 10000;
 }
 
-    // Métodos de ordenamiento
-    //Ordenamiento por Insercion
-    void listaProductos::OrdenamientoInsercionIdAsc(producto arr[], int n) {
+// Métodos de ordenamiento
+// Ordenamiento por Insercion
+void listaProductos::ordenamientoInsercionIdAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -199,7 +203,7 @@ int listaProductos::generarId() {
     }
 }
 
-void listaProductos::OrdenamientoInsercionIdDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionIdDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -211,7 +215,7 @@ void listaProductos::OrdenamientoInsercionIdDesc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionNombreAsc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionNombreAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -223,7 +227,7 @@ void listaProductos::OrdenamientoInsercionNombreAsc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionNombreDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionNombreDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -235,7 +239,7 @@ void listaProductos::OrdenamientoInsercionNombreDesc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionPrecioAsc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionPrecioAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -247,7 +251,7 @@ void listaProductos::OrdenamientoInsercionPrecioAsc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionPrecioDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionPrecioDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -259,7 +263,7 @@ void listaProductos::OrdenamientoInsercionPrecioDesc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionCantidadAsc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionCantidadAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -271,7 +275,7 @@ void listaProductos::OrdenamientoInsercionCantidadAsc(producto arr[], int n) {
     }
 }
 
-void listaProductos::OrdenamientoInsercionCantidadDesc(producto arr[], int n) {
+void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
@@ -331,4 +335,4 @@ GEN_ORDEN_MEZCLA(OrdenamientoMezclaPrecioAsc, getPrecio, <)
 GEN_ORDEN_MEZCLA(OrdenamientoMezclaPrecioDesc, getPrecio, >)
 GEN_ORDEN_MEZCLA(OrdenamientoMezclaCantidadAsc, getCantidad, <)
 GEN_ORDEN_MEZCLA(OrdenamientoMezclaCantidadDesc, getCantidad, >)
->>>>>>> Stashed changes
+

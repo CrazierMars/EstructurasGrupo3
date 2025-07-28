@@ -1,395 +1,387 @@
+#include <windows.h>
+#include <iostream>
 #include "listaProductos.h"
 #include "producto.h"
 #include "colaClientes.h"
 #include "cliente.h"
-#include <iostream>
 
 using namespace std;
 
 void mostrarMenu() {
-    cout << "\n--- Menú Principal ---" << endl;
-    cout << "1. Agregar producto al catálogo" << endl;
-    cout << "2. Eliminar producto del catálogo" << endl;
-    cout << "3. Mostrar catálogo" << endl;
-    cout << "4. Agregar cliente a la cola" << endl;
-    cout << "5. Atender cliente (quitar de la cola)" << endl;
-    cout << "6. Mostrar clientes en cola" << endl;
-    cout << "7. Salir" << endl;
-    cout << "Seleccione una opción: ";
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Menú Principal ---" << endl;
+	cout << "1. Agregar producto al catálogo" << endl;
+	cout << "2. Eliminar producto del catálogo" << endl;
+	cout << "3. Mostrar catálogo" << endl;
+	cout << "4. Agregar cliente a la cola" << endl;
+	cout << "5. Atender cliente (quitar de la cola)" << endl;
+	cout << "6. Mostrar clientes en cola" << endl;
+	cout << "7. Ordenar catálogo" << endl;
+	cout << "8. Salir" << endl;
+	cout << "Seleccione una opción: ";
 }
 
-<<<<<<< Updated upstream
-=======
-void MenuOrdenamientos(){
-    SetConsoleOutputCP(CP_UTF8);
-    setlocale(LC_ALL, "es_ES.UTF-8");
-    cout << "\n--- Menú de Ordenamientos ---" << endl;
-    cout << "1. Ordenamiento por Inserción" << endl;
-    cout << "2. Ordenamiento por Selección" << endl;
-    cout << "3. Ordenamiento por Burbuja" << endl;
-    cout << "4. Ordenamiento por Mezcla" << endl;
-    cout << "5. Volver." << endl;
-    cout << "Seleccione una opción: " << endl;
+void menuOrdenamientos() {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Menú de Ordenamientos ---" << endl;
+	cout << "1. Ordenamiento por Inserción" << endl;
+	cout << "2. Ordenamiento por Selección" << endl;
+	cout << "3. Ordenamiento por Burbuja" << endl;
+	cout << "4. Ordenamiento por Mezcla" << endl;
+	cout << "5. Volver." << endl;
+	cout << "Seleccione una opción: " << endl;
 }
 
-void MenuOrdenamientosInsercion() {
-    SetConsoleOutputCP(CP_UTF8);
-    setlocale(LC_ALL, "es_ES.UTF-8");
-    cout << "\n--- Ordenamiento por Inserción ---" << endl;
-    cout << "1. Ordenar por ID Ascendente" << endl;
-    cout << "2. Ordenar por ID Descendente" << endl;
-    cout << "3. Ordenar por Nombre Ascendente" << endl;
-    cout << "4. Ordenar por Nombre Descendente" << endl;
-    cout << "5. Ordenar por Precio Ascendente" << endl;
-    cout << "6. Ordenar por Precio Descendente" << endl;
-    cout << "7. Ordenar por Cantidad Ascendente" << endl;
-    cout << "8. Ordenar por Cantidad Descendente" << endl;
-    cout << "Seleccione una opción: ";
+void menuOrdenamientosInsercion() {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Ordenamiento por Inserción ---" << endl;
+	cout << "1. Ordenar por ID Ascendente" << endl;
+	cout << "2. Ordenar por ID Descendente" << endl;
+	cout << "3. Ordenar por Nombre Ascendente" << endl;
+	cout << "4. Ordenar por Nombre Descendente" << endl;
+	cout << "5. Ordenar por Precio Ascendente" << endl;
+	cout << "6. Ordenar por Precio Descendente" << endl;
+	cout << "7. Ordenar por Cantidad Ascendente" << endl;
+	cout << "8. Ordenar por Cantidad Descendente" << endl;
+	cout << "Seleccione una opción: ";
 }
 
-void ProcesarSeleccionInsercion(listaProductos& catalogo) {
-    int opcion;
-    cin >> opcion;
-    int n = catalogo.contarProductos();
-    if (n == 0) {
-        cout << "No hay productos para ordenar." << endl;
-        return;
-    }
+void procesarSeleccionInsercion(listaProductos& catalogo) {
+	int opcion;
+	cin >> opcion;
+	int n = catalogo.contarProductos();
 
-    producto** arrPtr = new producto*[n];
-    producto* actual = catalogo.getPrimero();
-    for (int i = 0; i < n && actual != nullptr; ++i) {
-        arrPtr[i] = actual;
-        actual = actual->getSiguiente();
-    }
+	producto** arrPtr = new producto*[n];
+	producto* actual = catalogo.getPrimero();
+	for (int i = 0; i < n && actual != nullptr; ++i) {
+		arrPtr[i] = actual;
+		actual = actual->getSiguiente();
+	}
 
-    producto* arr = new producto[n];
-    for (int i = 0; i < n; ++i) {
-        arr[i] = *arrPtr[i];
-    }
+	producto* arr = new producto[n];
+	for (int i = 0; i < n; ++i) {
+		arr[i] = *arrPtr[i];
+	}
 
-    switch (opcion) {
-        case 1:
-            catalogo.OrdenamientoInsercionIdAsc(arr, n);
-            cout << "\nCatálogo ordenado por ID Ascendente:\n";
-            break;
-        case 2:
-            catalogo.OrdenamientoInsercionIdDesc(arr, n);
-            cout << "\nCatálogo ordenado por ID Descendente:\n";
-            break;
-        case 3:
-            catalogo.OrdenamientoInsercionNombreAsc(arr, n);
-            cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
-            break;
-        case 4:
-            catalogo.OrdenamientoInsercionNombreDesc(arr, n);
-            cout << "\nCatálogo ordenado por Nombre Descendente:\n";
-            break;
-        case 5:
-            catalogo.OrdenamientoInsercionPrecioAsc(arr, n);
-            cout << "\nCatálogo ordenado por Precio Ascendente:\n";
-            break;
-        case 6:
-            catalogo.OrdenamientoInsercionPrecioDesc(arr, n);
-            cout << "\nCatálogo ordenado por Precio Descendente:\n";
-            break;
-        case 7:
-            catalogo.OrdenamientoInsercionCantidadAsc(arr, n);
-            cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
-            break;
-        case 8:
-            catalogo.OrdenamientoInsercionCantidadDesc(arr, n);
-            cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
-            break;
-        default:
-            cout << "Opción no válida." << endl;
-            delete[] arrPtr;
-            delete[] arr;
-            return;
-    }
-    
-    for (int i = 0; i < n; ++i) {
-        cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
-             << ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
-    }
+	switch (opcion) {
+		case 1:
+			catalogo.ordenamientoInsercionIdAsc(arr, n);
+			cout << "\nCatálogo ordenado por ID Ascendente:\n";
+			break;
+		case 2:
+			catalogo.ordenamientoInsercionIdDesc(arr, n);
+			cout << "\nCatálogo ordenado por ID Descendente:\n";
+			break;
+		case 3:
+			catalogo.ordenamientoInsercionNombreAsc(arr, n);
+			cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
+			break;
+		case 4:
+			catalogo.ordenamientoInsercionNombreDesc(arr, n);
+			cout << "\nCatálogo ordenado por Nombre Descendente:\n";
+			break;
+		case 5:
+			catalogo.ordenamientoInsercionPrecioAsc(arr, n);
+			cout << "\nCatálogo ordenado por Precio Ascendente:\n";
+			break;
+		case 6:
+			catalogo.ordenamientoInsercionPrecioDesc(arr, n);
+			cout << "\nCatálogo ordenado por Precio Descendente:\n";
+			break;
+		case 7:
+			catalogo.ordenamientoInsercionCantidadAsc(arr, n);
+			cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
+			break;
+		case 8:
+			catalogo.ordenamientoInsercionCantidadDesc(arr, n);
+			cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
+			break;
+		default:
+			cout << "Opción no válida." << endl;
+			delete[] arrPtr;
+			delete[] arr;
+			return;
+	}
 
-    delete[] arrPtr;
-    delete[] arr;
+	for (int i = 0; i < n; ++i) {
+		cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
+			<< ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
+	}
+
+	delete[] arrPtr;
+	delete[] arr;
 }
 
-void MenuOrdenamientosMezcla() {
-    SetConsoleOutputCP(CP_UTF8);
-    setlocale(LC_ALL, "es_ES.UTF-8");
-    cout << "\n--- Ordenamiento por Mezcla ---" << endl;
-    cout << "1. Ordenar por ID Ascendente" << endl;
-    cout << "2. Ordenar por ID Descendente" << endl;
-    cout << "3. Ordenar por Nombre Ascendente" << endl;
-    cout << "4. Ordenar por Nombre Descendente" << endl;
-    cout << "5. Ordenar por Precio Ascendente" << endl;
-    cout << "6. Ordenar por Precio Descendente" << endl;
-    cout << "7. Ordenar por Cantidad Ascendente" << endl;
-    cout << "8. Ordenar por Cantidad Descendente" << endl;
-    cout << "Seleccione una opción: ";
+void menuOrdenamientosMezcla() {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Ordenamiento por Mezcla ---" << endl;
+	cout << "1. Ordenar por ID Ascendente" << endl;
+	cout << "2. Ordenar por ID Descendente" << endl;
+	cout << "3. Ordenar por Nombre Ascendente" << endl;
+	cout << "4. Ordenar por Nombre Descendente" << endl;
+	cout << "5. Ordenar por Precio Ascendente" << endl;
+	cout << "6. Ordenar por Precio Descendente" << endl;
+	cout << "7. Ordenar por Cantidad Ascendente" << endl;
+	cout << "8. Ordenar por Cantidad Descendente" << endl;
+	cout << "Seleccione una opción: ";
 }
 
-void ProcesarSeleccionMezcla(listaProductos& catalogo) {
-    int opcion;
-    cin >> opcion;
-    int n = catalogo.contarProductos();
-    if (n == 0) {
-        cout << "No hay productos para ordenar." << endl;
-        return;
-    }
+void procesarSeleccionMezcla(listaProductos& catalogo) {
+	int opcion;
+	cin >> opcion;
+	int n = catalogo.contarProductos();
+	if (n == 0) {
+		cout << "No hay productos para ordenar." << endl;
+		return;
+	}
 
-    producto** arrPtr = new producto*[n];
-    producto* actual = catalogo.getPrimero();
-    for (int i = 0; i < n && actual != nullptr; ++i) {
-        arrPtr[i] = actual;
-        actual = actual->getSiguiente();
-    }
+	producto** arrPtr = new producto*[n];
+	producto* actual = catalogo.getPrimero();
+	for (int i = 0; i < n && actual != nullptr; ++i) {
+		arrPtr[i] = actual;
+		actual = actual->getSiguiente();
+	}
 
-    producto* arr = new producto[n];
-    for (int i = 0; i < n; ++i) {
-        arr[i] = *arrPtr[i];
-    }
+	producto* arr = new producto[n];
+	for (int i = 0; i < n; ++i) {
+		arr[i] = *arrPtr[i];
+	}
 
-    switch (opcion) {
-        case 1:
-            catalogo.OrdenamientoMezclaIdAsc(arr, n);
-            cout << "\nCatálogo ordenado por ID Ascendente:\n";
-            break;
-        case 2:
-            catalogo.OrdenamientoMezclaIdDesc(arr, n);
-            cout << "\nCatálogo ordenado por ID Descendente:\n";
-            break;
-        case 3:
-            catalogo.OrdenamientoMezclaNombreAsc(arr, n);
-            cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
-            break;
-        case 4:
-            catalogo.OrdenamientoMezclaNombreDesc(arr, n);
-            cout << "\nCatálogo ordenado por Nombre Descendente:\n";
-            break;
-        case 5:
-            catalogo.OrdenamientoMezclaPrecioAsc(arr, n);
-            cout << "\nCatálogo ordenado por Precio Ascendente:\n";
-            break;
-        case 6:
-            catalogo.OrdenamientoMezclaPrecioDesc(arr, n);
-            cout << "\nCatálogo ordenado por Precio Descendente:\n";
-            break;
-        case 7:
-            catalogo.OrdenamientoMezclaCantidadAsc(arr, n);
-            cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
-            break;
-        case 8:
-            catalogo.OrdenamientoMezclaCantidadDesc(arr, n);
-            cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
-            break;
-        default:
-            cout << "Opción no válida." << endl;
-            delete[] arrPtr;
-            delete[] arr;
-            return;
-    }
+	switch (opcion) {
+		case 1:
+			catalogo.OrdenamientoMezclaIdAsc(arr, n);
+			cout << "\nCatálogo ordenado por ID Ascendente:\n";
+			break;
+		case 2:
+			catalogo.OrdenamientoMezclaIdDesc(arr, n);
+			cout << "\nCatálogo ordenado por ID Descendente:\n";
+			break;
+		case 3:
+			catalogo.OrdenamientoMezclaNombreAsc(arr, n);
+			cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
+			break;
+		case 4:
+			catalogo.OrdenamientoMezclaNombreDesc(arr, n);
+			cout << "\nCatálogo ordenado por Nombre Descendente:\n";
+			break;
+		case 5:
+			catalogo.OrdenamientoMezclaPrecioAsc(arr, n);
+			cout << "\nCatálogo ordenado por Precio Ascendente:\n";
+			break;
+		case 6:
+			catalogo.OrdenamientoMezclaPrecioDesc(arr, n);
+			cout << "\nCatálogo ordenado por Precio Descendente:\n";
+			break;
+		case 7:
+			catalogo.OrdenamientoMezclaCantidadAsc(arr, n);
+			cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
+			break;
+		case 8:
+			catalogo.OrdenamientoMezclaCantidadDesc(arr, n);
+			cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
+			break;
+		default:
+			cout << "Opción no válida." << endl;
+			delete[] arrPtr;
+			delete[] arr;
+			return;
+	}
 
-    for (int i = 0; i < n; ++i) {
-        cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
-             << ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
-    }
+	for (int i = 0; i < n; ++i) {
+		cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
+			<< ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
+	}
 
-    delete[] arrPtr;
-    delete[] arr;
+	delete[] arrPtr;
+	delete[] arr;
 }
 
-
-
-
->>>>>>> Stashed changes
 void imprimirFactura(cliente* cliente) {
-    cout << "\n--- Factura del cliente ---" << endl;
-    cliente->imprimir();
-    double total = 0;
+	cout << "\n--- Factura del cliente ---" << endl;
+	cliente->imprimir();
+	double total = 0;
 
-    producto* prod = cliente->getProductos()->getPrimero();
+	producto* prod = cliente->getProductos()->getPrimero();
 
-    while (prod != nullptr) {
-        total += prod->getPrecio() * prod->getCantidad();
-        prod = prod->getSiguiente();
-    }
+	while (prod != nullptr) {
+		total += prod->getPrecio() * prod->getCantidad();
+		prod = prod->getSiguiente();
+	}
 
-    cout << "Total a cancelar: " << total << endl;
-    cout << "--------------------------\n";
+	cout << "Total a cancelar: " << total << endl;
+	cout << "--------------------------\n";
 }
 
 int main() {
-    colaClientes cola;
-    listaProductos catalogo;
-    char opcion;
+	colaClientes cola;
+	listaProductos catalogo;
+	char opcion;
 
-    string nombre, apellidos, cedula, prodNombre;
-    double precio;
-    int cantidad, edad, nprod, cant, prioridad;
+	string nombre, apellidos, cedula, prodNombre;
+	double precio;
+	int cantidad, edad, nprod, cant, prioridad;
 
-    do {
-        mostrarMenu();
-        cin >> opcion;
-        cout << endl;
+	do {
+		mostrarMenu();
+		cin >> opcion;
+		cin.ignore();
+		cout << endl;
 
-        switch (opcion) {
-            case '1': 
-                cout << "Nombre del producto: "; getline(cin, nombre);
-                cout << "Precio: "; cin >> precio;
-                cout << "Cantidad: "; cin >> cantidad;
-                // Buscar libreria que nos genere un ID único
-                catalogo.insertarFinal(1, nombre, precio, cantidad);
-                cout << "\nProducto agregado al catálogo.\n";
-                break;
-            
-            case '2':
-                if (catalogo.estaVacia()) {
-                    cout << "El catálogo está vacío\n";
-                    break;
-                }
+		switch (opcion) {
+			case '1': {
+				cout << "Nombre del producto: "; getline(cin, nombre);
+				cout << "Precio: "; cin >> precio;
+				cout << "Cantidad: "; cin >> cantidad;
+				catalogo.insertarFinal(nombre, precio, cantidad);
+				cout << "\nProducto agregado al catálogo.\n";
+				break;
+			}
+			case '2': {
+				if (catalogo.estaVacia()) {
+					cout << "El catálogo está vacío\n";
+					break;
+				}
 
-                cout << "Nombre del producto a eliminar: "; getline(cin, nombre);
+				cout << "Nombre del producto a eliminar: "; getline(cin, nombre);
 
-                if (catalogo.eliminar(nombre, "nombre")) {
-                    cout << "Producto eliminado.\n";
-                } else {
-                    cout << "Producto no encontrado.\n";
-                }
+				if (catalogo.eliminar(nombre, "nombre")) {
+					cout << "Producto eliminado.\n";
+				} else {
+					cout << "Producto no encontrado.\n";
+				}
+				break;
+			}
+			case '3': {
+				if (catalogo.estaVacia()) {
+					cout << "El catálogo está vacío\n";
+					break;
+				}
 
-                break;
-            
-            case '3': 
-                if (catalogo.estaVacia()) {
-                    cout << "El catálogo está vacío\n";
-                    break;
-                }
+				cout << "--- Catálogo de productos ---\n";
+				catalogo.imprimirLista();
+				break;
+			}
+			case '4': {
+				if (catalogo.estaVacia()) {
+					cout << "No se puede agregar clientes, el catálogo está vacío.\n";
+					break;
+				}
 
-                cout << "--- Catálogo de productos ---\n";
-                catalogo.imprimirLista();
-                break;
-            
-            case '4': {
-                if (catalogo.estaVacia()) {
-                    cout << "No se puede agregar clientes, el catálogo está vacío.\n";
-                    break;
-                }
+				cout << "Nombre: "; cin >> nombre;
+				cout << "Apellidos: "; cin >> apellidos;
+				cout << "Cédula: "; cin >> cedula;
+				cout << "Edad: "; cin >> edad; cin.ignore();
+				cout << "Prioridad: \n1-Ordinario\n2-Regular\n3-Preferencial "; cin >> prioridad;
 
-                cout << "Nombre: "; cin >> nombre;
-                cout << "Apellidos: "; cin >> apellidos;
-                cout << "Cédula: "; cin >> cedula;
-                cout << "Edad: "; cin >> edad;
-                cout << "Prioridad: \n1-Ordinario\n2-Regular\n3-Preferencial "; cin >> prioridad;
+				cliente* nuevoCliente = new cliente(nombre, apellidos, cedula, edad, prioridad);
+				cout << "¿Cuántos productos va a comprar?: ";
+				cin >> nprod; cin.ignore();
 
-                cliente* nuevoCliente = new cliente(nombre, apellidos, cedula, edad, prioridad);
-                cout << "¿Cuántos productos va a comprar?: ";
-                cin >> nprod;
-                
-                for (int i = 0; i < nprod; ++i) {
-                    cout << "Nombre del producto a comprar: "; getline(cin, prodNombre);
-                    producto* prod = catalogo.buscarNombre(prodNombre);
+				for (int i = 0; i < nprod; ++i) {
+					producto* prod = nullptr;
+					do {
+						cout << "Nombre del producto a comprar: "; getline(cin, prodNombre);
+						prod = catalogo.buscarNombre(prodNombre);
+						if (!prod) {
+							cout << "\nProducto no encontrado en catálogo. Intente nuevamente.\n\n";
+						}
+					} while (!prod);
 
-                    if (prod) {
-                        if (prod->getCantidad() < 1) {
-                            cout << "No hay stock disponible de ese producto.\n";
-                            continue;
-                        }
+					if (prod->getCantidad() < 1) {
+						cout << "No hay stock disponible de ese producto.\n";
+						continue;
+					}
 
-                        bool cantidadValida = false;
-                        while (!cantidadValida) {
-                            cout << "Cantidad: "; cin >> cant;
+					bool cantidadValida = false;
+					while (!cantidadValida) {
+						cout << "Cantidad: "; cin >> cant;
 
-                            if (cant <= prod->getCantidad() && cant > 0) {
-                                nuevoCliente->agregarProducto(1, prod->getNombre(), prod->getPrecio(), cant);
-                                cantidadValida = true;
-                            } else {
-                                cout << "\nSolo hay " << prod->getCantidad() << " unidades disponibles. Ingrese una cantidad válida.\n";
-                            }
-                        }
-                    } else {
-                        cout << "Producto no encontrado en catálogo.\n";
-                    }
-                }
+						if (cant <= prod->getCantidad() && cant > 0) {
+							nuevoCliente->agregarProducto(prod->getNombre(), prod->getPrecio(), cant);
+							cantidadValida = true;
+						} else {
+							cout << "\nSolo hay " << prod->getCantidad() << " unidades disponibles. Ingrese una cantidad válida.\n";
+						}
+					}
+				}
 
-                cola.insertar(nuevoCliente);
+				cola.insertar(nuevoCliente);
 
-                cout << "\nCliente agregado a la cola.\n";
-                break;
-            }
-            
-            case '5': {
-                if (cola.estaVacia()) {
-                    cout << "No hay clientes en la cola.\n";
-                    break;
-                }
+				cout << "\nCliente agregado a la cola.\n";
+				break;
+			}
+			case '5': {
+				if (cola.estaVacia()) {
+					cout << "No hay clientes en la cola.\n";
+					break;
+				}
 
-                cliente* atendido = cola.quitar();
+				cliente* atendido = cola.quitarPorPrioridad();
 
-                if (atendido) {
-                    producto* prodCliente = atendido->getProductos()->getPrimero();
+				if (atendido) {
+					producto* prodCliente = atendido->getProductos()->getPrimero();
 
-                    while (prodCliente != nullptr) {
-                        producto* prodCatalogo = catalogo.buscarNombre(prodCliente->getNombre());
-                        if (prodCatalogo) {
-                            int nuevaCantidad = prodCatalogo->getCantidad() - prodCliente->getCantidad();
-                            if (nuevaCantidad < 0) nuevaCantidad = 0;
-                            prodCatalogo->setCantidad(nuevaCantidad);
-                        }
-                        prodCliente = prodCliente->getSiguiente();
-                    }
+					while (prodCliente != nullptr) {
+						producto* prodCatalogo = catalogo.buscarNombre(prodCliente->getNombre());
+						if (prodCatalogo) {
+							int nuevaCantidad = prodCatalogo->getCantidad() - prodCliente->getCantidad();
+							if (nuevaCantidad < 0) nuevaCantidad = 0;
+							prodCatalogo->setCantidad(nuevaCantidad);
+						}
+						prodCliente = prodCliente->getSiguiente();
+					}
 
-                    imprimirFactura(atendido);
-                    delete atendido;
-                }
+					imprimirFactura(atendido);
+					delete atendido;
+				}
 
-                break;
-            }
-            case '6': 
-                if (cola.estaVacia()) {
-                    cout << "No hay clientes en la cola.\n";
-                    break;
-                }
+				break;
+			}
+			case '6': {
+				if (cola.estaVacia()) {
+					cout << "No hay clientes en la cola.\n";
+					break;
+				}
 
-                cout << "--- Clientes en cola ---\n";
-                cola.imprimirCola();
-                break;
-<<<<<<< Updated upstream
-            
-=======
-            case '7':
-                if (catalogo.estaVacia()) {
-                    cout << "El catálogo está vacío. No se puede ordenar.\n";
-                    break;
-                }
-                MenuOrdenamientos();
-                int tipoOrdenamiento;
-                cin >> tipoOrdenamiento;
-                switch (tipoOrdenamiento) {
-                    case 1:
-                        MenuOrdenamientosInsercion();
-                        ProcesarSeleccionInsercion(catalogo);
-                        break;
-                    case 2:
-                        cout << "Aqui deberia ir ordenamiento por seleccion" << endl;
-                        break;
-                    case 3:
-                        cout << "Aqui deberia ir ordenamiento por burbuja" << endl;
-                        break;
-                    case 4:
-                        MenuOrdenamientosMezcla();
-                        ProcesarSeleccionMezcla(catalogo);
-                        break;
-                default:
-                    cout << "Opción no válida.\n";
-                    break;
-            }
->>>>>>> Stashed changes
+				cout << "--- Clientes en cola ---\n";
+				cola.imprimirCola();
+				break;
+			}
+			case '7': {
+				if (catalogo.estaVacia()) {
+					cout << "El catálogo está vacío. No se puede ordenar.\n";
+					break;
+				}
+				menuOrdenamientos();
+				int tipoOrdenamiento;
+				cin >> tipoOrdenamiento;
+				switch (tipoOrdenamiento) {
+					case 1:
+						menuOrdenamientosInsercion();
+						procesarSeleccionInsercion(catalogo);
+						break;
+					case 2:
+						cout << "Aqui deberia ir ordenamiento por seleccion" << endl;
+						break;
+					case 3:
+						cout << "Aqui deberia ir ordenamiento por burbuja" << endl;
+						break;
+					case 4:
+						menuOrdenamientosMezcla();
+						procesarSeleccionMezcla(catalogo);
+						break;
+				default:
+					cout << "Opción no válida.\n";
+					break;
+			}
+		}
         }
-    } while (opcion != '7');
+	} while (opcion != '8');
 
-    cout << "Programa finalizado.\n";
-    return 0;
+	cout << "Programa finalizado.\n";
+	return 0;
 }
