@@ -1,4 +1,5 @@
 #include "producto.h"
+#include <iostream>
 
 int producto::getId() {
     return id;
@@ -30,4 +31,8 @@ void producto::setCantidad(int cantidad) {
 }
 void producto::setSiguiente(producto* siguiente) {
     this->siguiente = siguiente;
+}
+
+void producto::imprimir() {
+    std::cout << "ID: " << id << " | Nombre: " << nombre << " | Precio: " << precio << " | Cantidad: " << cantidad << std::endl;
 }

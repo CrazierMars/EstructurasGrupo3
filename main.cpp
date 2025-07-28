@@ -18,7 +18,8 @@ void mostrarMenu() {
 	cout << "5. Atender cliente (quitar de la cola)" << endl;
 	cout << "6. Mostrar clientes en cola" << endl;
 	cout << "7. Ordenar catálogo" << endl;
-	cout << "8. Salir" << endl;
+	cout << "8. Buscar en catálogo" << endl;
+	cout << "9. Salir" << endl;
 	cout << "Seleccione una opción: ";
 }
 
@@ -46,6 +47,21 @@ void menuOrdenamientoSeleccionado(string tipoOrdenamiento) {
 	cout << "6. Ordenar por Precio Descendente" << endl;
 	cout << "7. Ordenar por Cantidad Ascendente" << endl;
 	cout << "8. Ordenar por Cantidad Descendente" << endl;
+	cout << "Seleccione una opción: ";
+}
+
+void menuBusqueda() {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Menú de Búsqueda ---" << endl;
+	cout << "1. Buscar por ID Lineal" << endl;
+	cout << "2. Buscar por Nombre Lineal" << endl;
+	cout << "3. Buscar por Precio Lineal" << endl;
+	cout << "4. Buscar por Cantidad Lineal" << endl;
+	cout << "5. Buscar por ID Binaria" << endl;
+	cout << "6. Buscar por Nombre Binaria" << endl;
+	cout << "7. Buscar por Precio Binaria" << endl;
+	cout << "8. Buscar por Cantidad Binaria" << endl;
 	cout << "Seleccione una opción: ";
 }
 
@@ -166,6 +182,10 @@ int main() {
 	string nombre, apellidos, cedula, prodNombre;
 	double precio;
 	int cantidad, edad, nprod, cant, prioridad;
+
+	catalogo.insertarFinal("Arroz", 2000, 5);
+	catalogo.insertarFinal("Frijoles", 1000, 7);
+	catalogo.insertarFinal("Leche", 4000, 3);
 
 	do {
 		mostrarMenu();
@@ -326,8 +346,104 @@ int main() {
 					}
 				} while (tipoOrdenamiento != 5);
 			}
+			case '8': {
+				if (catalogo.estaVacia()) {
+					cout << "El catálogo está vacío. No se puede ordenar.\n";
+					break;
+				}
+
+				int tipoBusqueda;
+				int id = 0, cantidad = 0;
+				double precio = 0.0;
+				string nombre = "";
+				producto* productoEncontrado = nullptr;
+
+				int n = catalogo.contarProductos();
+
+				producto** arrPtr = new producto*[n];
+				producto* actual = catalogo.getPrimero();
+				for (int i = 0; i < n && actual != nullptr; ++i) {
+					arrPtr[i] = actual;
+					actual = actual->getSiguiente();
+				}
+
+				producto* arr = new producto[n];
+				for (int i = 0; i < n; ++i) {
+					arr[i] = *arrPtr[i];
+				}
+
+				do {
+					menuBusqueda();
+					cin >> tipoBusqueda;
+					switch (tipoBusqueda) {
+						case 1:
+							cout << "Ingrese el ID del producto a buscar: ";
+							cin >> id;
+							productoEncontrado = catalogo.buscarId(id);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 2:
+							cout << "Ingrese el nombre del producto a buscar: ";
+							cin >> nombre;
+							productoEncontrado = catalogo.buscarNombre(nombre);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 3:
+							cout << "Ingrese el precio del producto a buscar: ";
+							cin >> precio;
+							productoEncontrado = catalogo.buscarPrecio(precio);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 4:
+							cout << "Ingrese el cantidad del producto a buscar: ";
+							cin >> cantidad;
+							productoEncontrado = catalogo.buscarCantidad(cantidad);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 5:
+							cout << "Ingrese el ID del producto a buscar: ";
+							cin >> id;
+							catalogo.busquedaBinariaPorId(arr, n, id);
+							break;
+						case 6:
+							cout << "Ingrese el nombre del producto a buscar: ";
+							cin >> nombre;
+							catalogo.busquedaBinariaPorNombre(arr, n, nombre);
+							break;
+						case 7:
+							cout << "Ingrese el precio del producto a buscar: ";
+							cin >> precio;
+							catalogo.busquedaBinariaPorPrecio(arr, n, precio);
+							break;
+						case 8:
+							cout << "Ingrese el cantidad del producto a buscar: ";
+							cin >> cantidad;
+							catalogo.busquedaBinariaPorCantidad(arr, n, cantidad);
+							break;
+						default:
+							cout << "Opción no válida.\n";
+							break;
+					}
+				} while (tipoBusqueda != 3);
+			}
 		}
-	} while (opcion != '8');
+	} while (opcion != '9');
 
 	cout << "Programa finalizado.\n";
 	return 0;
