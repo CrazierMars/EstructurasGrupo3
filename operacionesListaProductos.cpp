@@ -40,7 +40,6 @@ producto* listaProductos::buscarId(int id) {
         actual = actual->getSiguiente();
     }
     return nullptr;
-    cout << "Producto con ID " << id << " no encontrado." << endl;
 }
 producto* listaProductos::buscarNombre(string nombre) {
     if (estaVacia()) {
@@ -54,7 +53,6 @@ producto* listaProductos::buscarNombre(string nombre) {
         actual = actual->getSiguiente();
     }
     return nullptr;
-    cout << "Producto con nombre " << nombre << "no encontrado." << endl;
 }
 producto* listaProductos::buscarPrecio(double precio) {
     if (estaVacia()) {
@@ -68,7 +66,6 @@ producto* listaProductos::buscarPrecio(double precio) {
         actual = actual->getSiguiente();
     }
     return nullptr; 
-    cout << "Producto con precio " << precio << "no encontrado." << endl;
 }
 producto* listaProductos::buscarCantidad(int cantidad) {
     if (estaVacia()) {
@@ -82,7 +79,6 @@ producto* listaProductos::buscarCantidad(int cantidad) {
         actual = actual->getSiguiente();
     }
     return nullptr; 
-    cout << "Producto con cantidad " << cantidad << " no encontrado." << endl;
 }
 
 void listaProductos::insertarInicio(string nombre, double precio, int cantidad) {
