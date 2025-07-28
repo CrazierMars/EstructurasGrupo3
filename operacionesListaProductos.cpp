@@ -178,7 +178,7 @@ bool listaProductos::estaVacia() {
 
 bool listaProductos::imprimirVacia() {
     if (estaVacia()) {
-        cout << "La lista esta vacía." << endl;
+        cout << "La lista esta vacia." << endl;
         return true;
     }
 
@@ -190,6 +190,7 @@ int listaProductos::generarId() {
 }
 
 // Métodos de ordenamiento
+
 // Ordenamiento por Insercion
 void listaProductos::ordenamientoInsercionIdAsc(producto arr[], int n) {
     for (int i = 1; i < n; i++) {
@@ -287,6 +288,112 @@ void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
     }
 }
 
+// Ordenamiento por selección
+
+// Para intercambiar dos productos
+void intercambiar(producto &a, producto &b) {
+    producto temp = a;
+    a = b;
+    b = temp;
+}
+
+// ID
+void selectionSortIdAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int min = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getId() < arr[min].getId()) {
+                min = j;
+            }
+        }
+        intercambiar(arr[i], arr[min]);
+    }
+}
+void selectionSortIdDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int max = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getId() > arr[max].getId()) {
+                max = j;
+            }
+        }
+        intercambiar(arr[i], arr[max]);
+    }
+}
+
+// Nombre
+void selectionSortNombreAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int min = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getNombre() < arr[min].getNombre()) {
+                min = j;
+            }
+        }
+        intercambiar(arr[i], arr[min]);
+    }
+}
+void selectionSortNombreDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int max = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getNombre() > arr[max].getNombre()) {
+                max = j;
+            }
+        }
+        intercambiar(arr[i], arr[max]);
+    }
+}
+
+// Precio
+void selectionSortPrecioAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int min = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getPrecio() < arr[min].getPrecio()) {
+                min = j;
+            }
+        }
+        intercambiar(arr[i], arr[min]);
+    }
+}
+void selectionSortPrecioDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int max = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getPrecio() > arr[max].getPrecio()) {
+                max = j;
+            }
+        }
+        intercambiar(arr[i], arr[max]);
+    }
+}
+
+// Cantidad
+void selectionSortCantidadAsc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int min = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getCantidad() < arr[min].getCantidad()) {
+                min = j;
+            }
+        }
+        intercambiar(arr[i], arr[min]);
+    }
+}
+void selectionSortCantidadDesc(producto arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int max = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j].getCantidad() > arr[max].getCantidad()) {
+                max = j;
+            }
+        }
+        intercambiar(arr[i], arr[max]);
+    }
+}
+
+
 //Metodos por mezcla
 void merge(producto arr[], int izquierda, int mitad, int derecha, function<bool(producto&, producto&)> comp) {
     int n1 = mitad - izquierda + 1;
@@ -336,6 +443,7 @@ GEN_ORDEN_MEZCLA(ordenamientoMezclaPrecioDesc, getPrecio, >)
 GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadAsc, getCantidad, <)
 GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadDesc, getCantidad, >)
 
+// Ordenamiento burbuja
 void listaProductos::ordenamientoBurbujaIdAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
@@ -409,3 +517,53 @@ void listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
             }
 }
 
+// Búsqueda binaria
+
+int binarySearchId(producto arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        int id = arr[mid].getId();
+
+        if (id == target) return mid;
+        if (id < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1; // No encontrado
+}
+int binarySearchNombre(producto arr[], int n, const std::string& target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        std::string nombre = arr[mid].getNombre();
+
+        if (nombre == target) return mid;
+        if (nombre < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+int binarySearchPrecio(producto arr[], int n, double target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        double precio = arr[mid].getPrecio();
+
+        if (precio == target) return mid;
+        if (precio < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+int binarySearchCantidad(producto arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        int cantidad = arr[mid].getCantidad();
+
+        if (cantidad == target) return mid;
+        if (cantidad < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
