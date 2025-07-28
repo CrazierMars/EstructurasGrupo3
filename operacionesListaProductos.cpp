@@ -298,7 +298,7 @@ void auxIntercambiar(producto &a, producto &b) {
 }
 
 // ID
-void ordenamientoSeleccionIdAsc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionIdAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -309,7 +309,7 @@ void ordenamientoSeleccionIdAsc(producto arr[], int n) {
         auxIntercambiar(arr[i], arr[min]);
     }
 }
-void ordenamientoSeleccionIdDesc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionIdDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -322,7 +322,7 @@ void ordenamientoSeleccionIdDesc(producto arr[], int n) {
 }
 
 // Nombre
-void ordenamientoSeleccionNombreAsc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionNombreAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -333,7 +333,7 @@ void ordenamientoSeleccionNombreAsc(producto arr[], int n) {
         auxIntercambiar(arr[i], arr[min]);
     }
 }
-void ordenamientoSeleccionNombreDesc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionNombreDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -346,7 +346,7 @@ void ordenamientoSeleccionNombreDesc(producto arr[], int n) {
 }
 
 // Precio
-void ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -357,7 +357,7 @@ void ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
         auxIntercambiar(arr[i], arr[min]);
     }
 }
-void ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -370,7 +370,7 @@ void ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
 }
 
 // Cantidad
-void ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -381,7 +381,7 @@ void ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
         auxIntercambiar(arr[i], arr[min]);
     }
 }
-void ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
+void listaProductos::ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -519,7 +519,7 @@ void listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
 
 // Búsqueda binaria
 
-int busquedaBinariaPorId(producto arr[], int n, int target) {
+int listaProductos::busquedaBinariaPorId(producto arr[], int n, int target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -532,7 +532,7 @@ int busquedaBinariaPorId(producto arr[], int n, int target) {
     return -1;
 }
 
-int busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
+int listaProductos::busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -545,7 +545,7 @@ int busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
     return -1;
 }
 
-int busquedaBinariaPorPrecio(producto arr[], int n, double target) {
+int listaProductos::busquedaBinariaPorPrecio(producto arr[], int n, double target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -558,7 +558,7 @@ int busquedaBinariaPorPrecio(producto arr[], int n, double target) {
     return -1;
 }
 
-int busquedaBinariaPorCantidad(producto arr[], int n, int target) {
+int listaProductos::busquedaBinariaPorCantidad(producto arr[], int n, int target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
