@@ -356,29 +356,32 @@ int main() {
 					cout << "El catálogo está vacío. No se puede ordenar.\n";
 					break;
 				}
-				menuOrdenamientos();
-				int tipoOrdenamiento;
-				cin >> tipoOrdenamiento;
-				switch (tipoOrdenamiento) {
-					case 1:
-						menuOrdenamientosInsercion();
-						procesarSeleccionInsercion(catalogo);
-						break;
-					case 2:
-						cout << "Aqui deberia ir ordenamiento por seleccion" << endl;
-						break;
-					case 3:
-						cout << "Aqui deberia ir ordenamiento por burbuja" << endl;
-						break;
-					case 4:
-						menuOrdenamientosMezcla();
-						procesarSeleccionMezcla(catalogo);
-						break;
-				default:
-					cout << "Opción no válida.\n";
-					break;
-			}
-		}
+
+                int tipoOrdenamiento;
+                do {
+                    menuOrdenamientos();
+                    cin >> tipoOrdenamiento;
+                    switch (tipoOrdenamiento) {
+                        case 1:
+                            menuOrdenamientosInsercion();
+                            procesarSeleccionInsercion(catalogo);
+                            break;
+                        case 2:
+                            cout << "Aqui deberia ir ordenamiento por seleccion" << endl;
+                            break;
+                        case 3:
+                            cout << "Aqui deberia ir ordenamiento por burbuja" << endl;
+                            break;
+                        case 4:
+                            menuOrdenamientosMezcla();
+                            procesarSeleccionMezcla(catalogo);
+                            break;
+                        default:
+                            cout << "Opción no válida.\n";
+                            break;
+                    }
+                } while (tipoOrdenamiento != 5);
+            }
         }
 	} while (opcion != '8');
 
