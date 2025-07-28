@@ -106,7 +106,17 @@ void mostrarCatalogoOrdenado(listaProductos& catalogo, string metodo) {
         }
     }
     if (metodo == "seleccion") {
-        // Faltante
+        switch (opcion) {
+            case 1: catalogo.ordenamientoSeleccionIdAsc(arr, n); break;
+            case 2: catalogo.ordenamientoSeleccionIdDesc(arr, n); break;
+            case 3: catalogo.ordenamientoSeleccionNombreAsc(arr, n); break;
+            case 4: catalogo.ordenamientoSeleccionNombreDesc(arr, n); break;
+            case 5: catalogo.ordenamientoSeleccionPrecioAsc(arr, n); break;
+            case 6: catalogo.ordenamientoSeleccionPrecioDesc(arr, n); break;
+            case 7: catalogo.ordenamientoSeleccionCantidadAsc(arr, n); break;
+            case 8: catalogo.ordenamientoSeleccionCantidadDesc(arr, n); break;
+            default: cout << "Opción no válida." << endl; delete[] arrPtr; delete[] arr; return;
+        }
     }
 
     string message = "\nCatálogo ordenado por ";

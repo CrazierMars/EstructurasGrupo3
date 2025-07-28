@@ -10,7 +10,7 @@
         precio * 
         cantidad - Harold listo
 
-    - Busqueda Binaria - Rafa
+    - Busqueda Binaria - Rafa listo
         id 
         nombre 
         precio 
@@ -24,7 +24,7 @@
             precio 
             cantidad
 
-        - Selección (ASC, DESC) - Rafa
+        - Selección (ASC, DESC) - Rafa listo
             id
             nombre
             precio 

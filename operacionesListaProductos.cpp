@@ -290,15 +290,15 @@ void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
 
 // Ordenamiento por selección
 
-// Para intercambiar dos productos
-void intercambiar(producto &a, producto &b) {
+// Función auxiliar para intercambiar dos productos
+void auxIntercambiar(producto &a, producto &b) {
     producto temp = a;
     a = b;
     b = temp;
 }
 
 // ID
-void selectionSortIdAsc(producto arr[], int n) {
+void ordenamientoSeleccionIdAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -306,10 +306,10 @@ void selectionSortIdAsc(producto arr[], int n) {
                 min = j;
             }
         }
-        intercambiar(arr[i], arr[min]);
+        auxIntercambiar(arr[i], arr[min]);
     }
 }
-void selectionSortIdDesc(producto arr[], int n) {
+void ordenamientoSeleccionIdDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -317,12 +317,12 @@ void selectionSortIdDesc(producto arr[], int n) {
                 max = j;
             }
         }
-        intercambiar(arr[i], arr[max]);
+        auxIntercambiar(arr[i], arr[max]);
     }
 }
 
 // Nombre
-void selectionSortNombreAsc(producto arr[], int n) {
+void ordenamientoSeleccionNombreAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -330,10 +330,10 @@ void selectionSortNombreAsc(producto arr[], int n) {
                 min = j;
             }
         }
-        intercambiar(arr[i], arr[min]);
+        auxIntercambiar(arr[i], arr[min]);
     }
 }
-void selectionSortNombreDesc(producto arr[], int n) {
+void ordenamientoSeleccionNombreDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -341,12 +341,12 @@ void selectionSortNombreDesc(producto arr[], int n) {
                 max = j;
             }
         }
-        intercambiar(arr[i], arr[max]);
+        auxIntercambiar(arr[i], arr[max]);
     }
 }
 
 // Precio
-void selectionSortPrecioAsc(producto arr[], int n) {
+void ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -354,10 +354,10 @@ void selectionSortPrecioAsc(producto arr[], int n) {
                 min = j;
             }
         }
-        intercambiar(arr[i], arr[min]);
+        auxIntercambiar(arr[i], arr[min]);
     }
 }
-void selectionSortPrecioDesc(producto arr[], int n) {
+void ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -365,12 +365,12 @@ void selectionSortPrecioDesc(producto arr[], int n) {
                 max = j;
             }
         }
-        intercambiar(arr[i], arr[max]);
+        auxIntercambiar(arr[i], arr[max]);
     }
 }
 
 // Cantidad
-void selectionSortCantidadAsc(producto arr[], int n) {
+void ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int min = i;
         for (int j = i + 1; j < n; ++j) {
@@ -378,10 +378,10 @@ void selectionSortCantidadAsc(producto arr[], int n) {
                 min = j;
             }
         }
-        intercambiar(arr[i], arr[min]);
+        auxIntercambiar(arr[i], arr[min]);
     }
 }
-void selectionSortCantidadDesc(producto arr[], int n) {
+void ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i) {
         int max = i;
         for (int j = i + 1; j < n; ++j) {
@@ -389,7 +389,7 @@ void selectionSortCantidadDesc(producto arr[], int n) {
                 max = j;
             }
         }
-        intercambiar(arr[i], arr[max]);
+        auxIntercambiar(arr[i], arr[max]);
     }
 }
 
@@ -519,7 +519,7 @@ void listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
 
 // Búsqueda binaria
 
-int binarySearchId(producto arr[], int n, int target) {
+int busquedaBinariaPorId(producto arr[], int n, int target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -529,9 +529,10 @@ int binarySearchId(producto arr[], int n, int target) {
         if (id < target) low = mid + 1;
         else high = mid - 1;
     }
-    return -1; // No encontrado
+    return -1;
 }
-int binarySearchNombre(producto arr[], int n, const std::string& target) {
+
+int busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -543,7 +544,8 @@ int binarySearchNombre(producto arr[], int n, const std::string& target) {
     }
     return -1;
 }
-int binarySearchPrecio(producto arr[], int n, double target) {
+
+int busquedaBinariaPorPrecio(producto arr[], int n, double target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -555,7 +557,8 @@ int binarySearchPrecio(producto arr[], int n, double target) {
     }
     return -1;
 }
-int binarySearchCantidad(producto arr[], int n, int target) {
+
+int busquedaBinariaPorCantidad(producto arr[], int n, int target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
