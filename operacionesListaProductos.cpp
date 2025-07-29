@@ -189,99 +189,123 @@ int listaProductos::generarId() {
 
 // Ordenamiento por Insercion
 void listaProductos::ordenamientoInsercionIdAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getId() > temp.getId()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionIdDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getId() < temp.getId()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionNombreAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getNombre() > temp.getNombre()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionNombreDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getNombre() < temp.getNombre()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionPrecioAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getPrecio() > temp.getPrecio()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionPrecioDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getPrecio() < temp.getPrecio()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionCantidadAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getCantidad() > temp.getCantidad()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getCantidad() < temp.getCantidad()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "Comparaciones realizadas: " << comparaciones << endl;
 }
 
 // Ordenamiento por selección
