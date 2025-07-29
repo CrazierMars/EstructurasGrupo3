@@ -591,54 +591,54 @@ int listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
 
 // Búsqueda binaria
 
-int listaProductos::busquedaBinariaPorId(producto arr[], int n, int target) {
+producto* listaProductos::busquedaBinariaPorId(producto arr[], int n, int target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
         int id = arr[mid].getId();
 
-        if (id == target) return mid;
+        if (id == target) return &arr[mid];
         if (id < target) low = mid + 1;
         else high = mid - 1;
     }
-    return -1;
+    return nullptr;
 }
 
-int listaProductos::busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
+producto* listaProductos::busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
         std::string nombre = arr[mid].getNombre();
 
-        if (nombre == target) return mid;
+        if (nombre == target) return &arr[mid];
         if (nombre < target) low = mid + 1;
         else high = mid - 1;
     }
-    return -1;
+    return nullptr;
 }
 
-int listaProductos::busquedaBinariaPorPrecio(producto arr[], int n, double target) {
+producto* listaProductos::busquedaBinariaPorPrecio(producto arr[], int n, double target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
         double precio = arr[mid].getPrecio();
 
-        if (precio == target) return mid;
+        if (precio == target) return &arr[mid];
         if (precio < target) low = mid + 1;
         else high = mid - 1;
     }
-    return -1;
+    return nullptr;
 }
 
-int listaProductos::busquedaBinariaPorCantidad(producto arr[], int n, int target) {
+producto* listaProductos::busquedaBinariaPorCantidad(producto arr[], int n, int target) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
         int cantidad = arr[mid].getCantidad();
 
-        if (cantidad == target) return mid;
+        if (cantidad == target) return &arr[mid];
         if (cantidad < target) low = mid + 1;
         else high = mid - 1;
     }
-    return -1;
+    return nullptr;
 }

@@ -75,10 +75,10 @@ public:
     int ordenamientoBurbujaCantidadAsc(producto arr[], int n);
     int ordenamientoBurbujaCantidadDesc(producto arr[], int n);
 
-    int busquedaBinariaPorId(producto arr[], int n, int target);
-    int busquedaBinariaPorNombre(producto arr[], int n, const std::string& target);
-    int busquedaBinariaPorPrecio(producto arr[], int n, double target);
-    int busquedaBinariaPorCantidad(producto arr[], int n, int target);
+    producto* busquedaBinariaPorId(producto arr[], int n, int target);
+    producto* busquedaBinariaPorNombre(producto arr[], int n, const std::string& target);
+    producto* busquedaBinariaPorPrecio(producto arr[], int n, double target);
+    producto* busquedaBinariaPorCantidad(producto arr[], int n, int target);
 };
 
 #endif // LISTA_PRODUCTOS_H

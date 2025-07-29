@@ -83,7 +83,7 @@ void mostrarCatalogoOrdenado(listaProductos& catalogo, string metodo) {
 		arr[i] = *arrPtr[i];
 	}
 
-    if (metodo == "inserción") {
+    if (metodo == "insercion") {
         switch (opcion) {
             case 1: catalogo.ordenamientoInsercionIdAsc(arr, n); break;
             case 2: catalogo.ordenamientoInsercionIdDesc(arr, n); break;
@@ -329,11 +329,11 @@ int main() {
 					switch (tipoOrdenamiento) {
 						case 1:
 							menuOrdenamientoSeleccionado("Inserción");
-							mostrarCatalogoOrdenado(catalogo, "inserción");
+							mostrarCatalogoOrdenado(catalogo, "insercion");
 							break;
 						case 2:
 							menuOrdenamientoSeleccionado("Selección");
-							mostrarCatalogoOrdenado(catalogo, "selección");
+							mostrarCatalogoOrdenado(catalogo, "seleccion");
 							break;
 						case 3:
 							menuOrdenamientoSeleccionado("Burbuja");
@@ -424,34 +424,50 @@ int main() {
 							}
 							break;
 						// Búsqueda binaria
-						// case 5:
-						// 	cout << "Ingrese el ID del producto a buscar: ";
-						// 	cin >> id;
-						// 	int i = catalogo.busquedaBinariaPorId(arr, n, id);
-						// 	if (i == -1) cout << "El producto no se encontró." << endl;
-						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
-						// 	break;
-						// case 6:
-						// 	cout << "Ingrese el nombre del producto a buscar: ";
-						// 	cin >> nombre;
-						// 	int i = catalogo.busquedaBinariaPorNombre(arr, n, nombre);
-						// 	if (i == -1) cout << "El producto no se encontró." << endl;
-						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
-						// 	break;
-						// case 7:
-						// 	cout << "Ingrese el precio del producto a buscar: ";
-						// 	cin >> precio;
-						// 	int i = catalogo.busquedaBinariaPorPrecio(arr, n, precio);
-						// 	if (i == -1) cout << "El producto no se encontró." << endl;
-						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
-						// 	break;
-						// case 8:
-						// 	cout << "Ingrese el cantidad del producto a buscar: ";
-						// 	cin >> cantidad;
-						// 	int i = catalogo.busquedaBinariaPorCantidad(arr, n, cantidad);
-						// 	if (i == -1) cout << "El producto no se encontró." << endl;
-						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
-						// 	break;
+						case 5:
+							cout << "Ingrese el ID del producto a buscar: ";
+							cin >> id;
+							catalogo.ordenamientoInsercionIdAsc(arr, n);
+							productoEncontrado = catalogo.busquedaBinariaPorId(arr, n, id);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 6:
+							cout << "Ingrese el nombre del producto a buscar: ";
+							cin >> nombre;
+							catalogo.ordenamientoInsercionNombreAsc(arr, n);
+							productoEncontrado = catalogo.busquedaBinariaPorNombre(arr, n, nombre);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 7:
+							cout << "Ingrese el precio del producto a buscar: ";
+							cin >> precio;
+							catalogo.ordenamientoInsercionPrecioAsc(arr, n);
+							productoEncontrado = catalogo.busquedaBinariaPorPrecio(arr, n, precio);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 8:
+							cout << "Ingrese el cantidad del producto a buscar: ";
+							cin >> cantidad;
+							catalogo.ordenamientoInsercionCantidadAsc(arr, n);
+							productoEncontrado = catalogo.busquedaBinariaPorCantidad(arr, n, cantidad);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
 						case 9:
 							cout << "\nVolviendo al menu principal..." << endl;
 							break;
