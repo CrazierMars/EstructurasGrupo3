@@ -97,19 +97,17 @@ void mostrarCatalogoOrdenado(listaProductos& catalogo, string metodo) {
         }
     }
     if (metodo == "burbuja") {
-        int repeticiones = 0;
         switch (opcion) {
-            case 1: repeticiones = catalogo.ordenamientoBurbujaIdAsc(arr, n); break;
-            case 2: repeticiones = catalogo.ordenamientoBurbujaIdDesc(arr, n); break;
-            case 3: repeticiones = catalogo.ordenamientoBurbujaNombreAsc(arr, n); break;
-            case 4: repeticiones = catalogo.ordenamientoBurbujaNombreDesc(arr, n); break;
-            case 5: repeticiones = catalogo.ordenamientoBurbujaPrecioAsc(arr, n); break;
-            case 6: repeticiones = catalogo.ordenamientoBurbujaPrecioDesc(arr, n); break;
-            case 7: repeticiones = catalogo.ordenamientoBurbujaCantidadAsc(arr, n); break;
-            case 8: repeticiones = catalogo.ordenamientoBurbujaCantidadDesc(arr, n); break;
+            case 1: catalogo.ordenamientoBurbujaIdAsc(arr, n); break;
+            case 2: catalogo.ordenamientoBurbujaIdDesc(arr, n); break;
+            case 3: catalogo.ordenamientoBurbujaNombreAsc(arr, n); break;
+            case 4: catalogo.ordenamientoBurbujaNombreDesc(arr, n); break;
+            case 5: catalogo.ordenamientoBurbujaPrecioAsc(arr, n); break;
+            case 6: catalogo.ordenamientoBurbujaPrecioDesc(arr, n); break;
+            case 7: catalogo.ordenamientoBurbujaCantidadAsc(arr, n); break;
+            case 8: catalogo.ordenamientoBurbujaCantidadDesc(arr, n); break;
             default: cout << "Opción no válida." << endl; delete[] arrPtr; delete[] arr; return;
         }
-        cout << "\nComparaciones realizadas: " << repeticiones << endl;
     }
     if (metodo == "mezcla") {
         switch (opcion) {

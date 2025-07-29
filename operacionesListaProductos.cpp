@@ -4,6 +4,12 @@
 
 using namespace std;
 
+auto toLower = [](const std::string& s) {
+    std::string res = s;
+    for (char& c : res) c = tolower(static_cast<unsigned char>(c));
+    return res;
+};
+
 listaProductos::~listaProductos() {
     producto* actual = primero;
     while (actual != nullptr) {
@@ -47,7 +53,7 @@ producto* listaProductos::buscarNombre(string nombre) {
     }
     producto* actual = primero;
     while (actual != nullptr) {
-        if (actual->getNombre() == nombre) {
+        if (toLower(actual->getNombre()) == toLower(nombre)) {
             return actual;
         }
         actual = actual->getSiguiente();
@@ -492,7 +498,7 @@ GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadAsc, getCantidad, <)
 GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadDesc, getCantidad, >)
 
 // Ordenamiento burbuja
-int listaProductos::ordenamientoBurbujaIdAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaIdAsc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -501,10 +507,10 @@ int listaProductos::ordenamientoBurbujaIdAsc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaIdDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaIdDesc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -513,10 +519,10 @@ int listaProductos::ordenamientoBurbujaIdDesc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaNombreAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaNombreAsc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -525,10 +531,10 @@ int listaProductos::ordenamientoBurbujaNombreAsc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaNombreDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaNombreDesc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -537,10 +543,10 @@ int listaProductos::ordenamientoBurbujaNombreDesc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaPrecioAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaPrecioAsc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -549,10 +555,10 @@ int listaProductos::ordenamientoBurbujaPrecioAsc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaPrecioDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaPrecioDesc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -561,10 +567,10 @@ int listaProductos::ordenamientoBurbujaPrecioDesc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaCantidadAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaCantidadAsc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -573,10 +579,10 @@ int listaProductos::ordenamientoBurbujaCantidadAsc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
-int listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
     int comparaciones = 0;
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j) {
@@ -585,7 +591,7 @@ int listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
                 std::swap(arr[j], arr[j + 1]);
             }
         }
-    return comparaciones;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 
 }
 
@@ -604,14 +610,15 @@ producto* listaProductos::busquedaBinariaPorId(producto arr[], int n, int target
     return nullptr;
 }
 
-producto* listaProductos::busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
+producto* listaProductos::busquedaBinariaPorNombre(producto arr[], int n, std::string& target) {
     int low = 0, high = n - 1;
+    target = toLower(target);
     while (low <= high) {
         int mid = low + (high - low) / 2;
         std::string nombre = arr[mid].getNombre();
 
-        if (nombre == target) return &arr[mid];
-        if (nombre < target) low = mid + 1;
+        if (toLower(nombre) == target) return &arr[mid];
+        if (toLower(nombre) < target) low = mid + 1;
         else high = mid - 1;
     }
     return nullptr;
