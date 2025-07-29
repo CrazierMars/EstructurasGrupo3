@@ -10,13 +10,13 @@
         precio * 
         cantidad - Harold listo
 
-    - Busqueda Binaria - Rafa
+    - Busqueda Binaria - Rafa (listo)
         id 
         nombre 
         precio 
         cantidad 
 
-    - Ordenamientos
+    - Ordenamientos ( Añadir impresión de cantidad de comparaciones! )
 
         - Inserción (ASC, DESC) - Diego
             id
@@ -24,7 +24,7 @@
             precio 
             cantidad
 
-        - Selección (ASC, DESC) - Rafa
+        - Selección (ASC, DESC) - Rafa (listo, con impresión de comparaciones)
             id
             nombre
             precio 

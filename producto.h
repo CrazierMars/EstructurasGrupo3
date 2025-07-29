@@ -40,6 +40,8 @@ public:
     void setPrecio(double pPrecio);
     void setCantidad(int pCantidad);
     void setSiguiente(producto* nuevoSiguiente);
+
+    void imprimir();
 };
 
 #endif
