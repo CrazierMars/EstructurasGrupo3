@@ -9,7 +9,7 @@ class listaProductos {
 private:
     producto* primero;
 
-    void auxIntercambiar(producto &a, producto &b); // Función auxiliar para intercambiar productos en un arreglo
+    void auxIntercambiar(producto& a, producto& b); // Función auxiliar para intercambiar productos en un arreglo
 
 public:
     listaProductos(){
