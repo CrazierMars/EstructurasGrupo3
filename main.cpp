@@ -62,6 +62,7 @@ void menuBusqueda() {
 	cout << "6. Buscar por Nombre (binaria)" << endl;
 	cout << "7. Buscar por Precio (binaria)" << endl;
 	cout << "8. Buscar por Cantidad (binaria)" << endl;
+	cout << "9. Volver" << endl;
 	cout << "Seleccione una opción: ";
 }
 
@@ -340,11 +341,15 @@ int main() {
 							menuOrdenamientoSeleccionado("Mezcla");
 							mostrarCatalogoOrdenado(catalogo, "mezcla");
 							break;
+						case 5:
+							cout << "\nVolviendo al menu principal..." << endl;
+							break;
 						default:
 							cout << "Opción no válida.\n";
 							break;
 					}
 				} while (tipoOrdenamiento != 5);
+				break;
 			}
 			case '8': {
 				if (catalogo.estaVacia()) {
@@ -445,11 +450,15 @@ int main() {
 							if (i == -1) cout << "El producto no se encontró." << endl;
 							else cout << "El producto está en la posición número " << i + 1 << endl;
 							break;
+						case 9:
+							cout << "\nVolviendo al menu principal..." << endl;
+							break;
 						default:
 							cout << "Opción no válida.\n";
 							break;
 					}
-				} while (tipoBusqueda != 3);
+				} while (tipoBusqueda != 9);
+					break;
 			}
 		}
 	} while (opcion != '9');
