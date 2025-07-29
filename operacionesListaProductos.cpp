@@ -287,7 +287,7 @@ void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
 // Ordenamiento por selección
 
 // Función auxiliar para intercambiar dos productos
-void listaProductos::auxIntercambiar(producto &a, producto &b) {
+void listaProductos::auxIntercambiar(producto& a, producto& b) {
     producto temp = a;
     a = b;
     b = temp;
@@ -296,9 +296,9 @@ void listaProductos::auxIntercambiar(producto &a, producto &b) {
 // ID
 void listaProductos::ordenamientoSeleccionIdAsc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int min = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getId() < arr[min].getId()) {
                 min = j;
@@ -310,9 +310,9 @@ void listaProductos::ordenamientoSeleccionIdAsc(producto arr[], int n) {
 }
 void listaProductos::ordenamientoSeleccionIdDesc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int max = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getId() > arr[max].getId()) {
                 max = j;
@@ -326,9 +326,9 @@ void listaProductos::ordenamientoSeleccionIdDesc(producto arr[], int n) {
 // Nombre
 void listaProductos::ordenamientoSeleccionNombreAsc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int min = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getNombre() < arr[min].getNombre()) {
                 min = j;
@@ -340,9 +340,9 @@ void listaProductos::ordenamientoSeleccionNombreAsc(producto arr[], int n) {
 }
 void listaProductos::ordenamientoSeleccionNombreDesc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int max = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getNombre() > arr[max].getNombre()) {
                 max = j;
@@ -356,9 +356,9 @@ void listaProductos::ordenamientoSeleccionNombreDesc(producto arr[], int n) {
 // Precio
 void listaProductos::ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int min = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getPrecio() < arr[min].getPrecio()) {
                 min = j;
@@ -370,9 +370,9 @@ void listaProductos::ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
 }
 void listaProductos::ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int max = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getPrecio() > arr[max].getPrecio()) {
                 max = j;
@@ -386,9 +386,9 @@ void listaProductos::ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
 // Cantidad
 void listaProductos::ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int min = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getCantidad() < arr[min].getCantidad()) {
                 min = j;
@@ -400,9 +400,9 @@ void listaProductos::ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
 }
 void listaProductos::ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
     int comparaciones = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int max = i;
-        for (int j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; j++) {
             comparaciones++;
             if (arr[j].getCantidad() > arr[max].getCantidad()) {
                 max = j;

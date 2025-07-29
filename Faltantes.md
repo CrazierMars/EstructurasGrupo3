@@ -16,7 +16,7 @@
         precio 
         cantidad 
 
-    - Ordenamientos ( Añadir impresión de cantidad de comparaciones! )
+    - Ordenamientos ( Añadir impresión de cantidad de comparaciones )
 
         - Inserción (ASC, DESC) - Diego
             id
