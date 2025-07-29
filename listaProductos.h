@@ -3,49 +3,24 @@
 
 #include "producto.h"
 
+using namespace std;
+
 class listaProductos {
-    //atributos
-    private: 
-        producto* primero;
-    // metodos
-    public: 
-        //Constructor 
-        listaProductos(){
-            primero = nullptr;
-        }
-        // Destructor 
-        ~listaProductos(){
-            producto* actual = primero; 
-            while (actual != nullptr) {
-                producto* siguiente = actual->getSiguiente();
-                delete actual; 
-                actual = siguiente;
-            }
-        }
+private:
+    producto* primero;
 
-        // Metodos de la lista 
+    void auxIntercambiar(producto& a, producto& b); // Función auxiliar para intercambiar productos en un arreglo
 
-        producto* getPrimero();
-        producto* getUltimo(); 
-        // *****
-        //****Revisar metodos buscar, si es optimo separar por parametro o buscar solo por id
-        //***** */
-        // Se implementa buscar por posible implementacion a futuro. 
-        producto* buscarProductoId(int pId); 
-        producto* buscarProductoNombre(const std::string& pNombre);
-        producto* buscarProductoPrecio(double pPrecio);
-        // Metodos de insercion 
-        void agregarProductoInicio(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
-        void agregarProductoFinal(int pNuevoId, const std::string& pNuevoNombre, double pNuevoPrecio, int pNuevaCantidad);
-        void imprimirLista();
-        int contarProductos();
-        // ****
-        // Revisar si es optimo borrar por id o modularlo como los metodos buscar de aca arriba
-        void eliminarProducto(int pIdEliminar);
+public:
+    listaProductos(){
+        primero = nullptr;
+    }
 
+    ~listaProductos();
 
-<<<<<<< Updated upstream
-=======
+    producto* getPrimero();
+    producto* getUltimo();
+
     producto* buscarId(int id);
     producto* buscarNombre(string nombre);
     producto* buscarPrecio(double precio);
@@ -63,15 +38,6 @@ class listaProductos {
     bool estaVacia();
     int generarId();
 
-    void OrdenamientoMezclaIdAsc(producto arr[], int n);
-    void OrdenamientoMezclaIdDesc(producto arr[], int n);
-    void OrdenamientoMezclaNombreAsc(producto arr[], int n);
-    void OrdenamientoMezclaNombreDesc(producto arr[], int n);
-    void OrdenamientoMezclaPrecioAsc(producto arr[], int n);
-    void OrdenamientoMezclaPrecioDesc(producto arr[], int n);
-    void OrdenamientoMezclaCantidadAsc(producto arr[], int n);
-    void OrdenamientoMezclaCantidadDesc(producto arr[], int n);
-
     void ordenamientoInsercionIdAsc(producto arr[], int n);
     void ordenamientoInsercionIdDesc(producto arr[], int n);
     void ordenamientoInsercionNombreAsc(producto arr[], int n);
@@ -81,17 +47,37 @@ class listaProductos {
     void ordenamientoInsercionCantidadAsc(producto arr[], int n);
     void ordenamientoInsercionCantidadDesc(producto arr[], int n);
 
+    void ordenamientoSeleccionIdAsc(producto arr[], int n);
+    void ordenamientoSeleccionIdDesc(producto arr[], int n);
+    void ordenamientoSeleccionNombreAsc(producto arr[], int n);
+    void ordenamientoSeleccionNombreDesc(producto arr[], int n);
+    void ordenamientoSeleccionPrecioAsc(producto arr[], int n);
+    void ordenamientoSeleccionPrecioDesc(producto arr[], int n);
+    void ordenamientoSeleccionCantidadAsc(producto arr[], int n);
+    void ordenamientoSeleccionCantidadDesc(producto arr[], int n);
 
-    void OrdenamientoBurbujaIdAsc(producto arr[], int n);
-    void OrdenamientoBurbujaIdDesc(producto arr[], int n);
-    void OrdenamientoBurbujaNombreAsc(producto arr[], int n);
-    void OrdenamientoBurbujaNombreDesc(producto arr[], int n);
-    void OrdenamientoBurbujaPrecioAsc(producto arr[], int n);
-    void OrdenamientoBurbujaPrecioDesc(producto arr[], int n);
-    void OrdenamientoBurbujaCantidadAsc(producto arr[], int n);
-    void OrdenamientoBurbujaCantidadDesc(producto arr[], int n);
+    void ordenamientoMezclaIdAsc(producto arr[], int n);
+    void ordenamientoMezclaIdDesc(producto arr[], int n);
+    void ordenamientoMezclaNombreAsc(producto arr[], int n);
+    void ordenamientoMezclaNombreDesc(producto arr[], int n);
+    void ordenamientoMezclaPrecioAsc(producto arr[], int n);
+    void ordenamientoMezclaPrecioDesc(producto arr[], int n);
+    void ordenamientoMezclaCantidadAsc(producto arr[], int n);
+    void ordenamientoMezclaCantidadDesc(producto arr[], int n);
+    
+    void ordenamientoBurbujaIdAsc(producto arr[], int n);
+    void ordenamientoBurbujaIdDesc(producto arr[], int n);
+    void ordenamientoBurbujaNombreAsc(producto arr[], int n);
+    void ordenamientoBurbujaNombreDesc(producto arr[], int n);
+    void ordenamientoBurbujaPrecioAsc(producto arr[], int n);
+    void ordenamientoBurbujaPrecioDesc(producto arr[], int n);
+    void ordenamientoBurbujaCantidadAsc(producto arr[], int n);
+    void ordenamientoBurbujaCantidadDesc(producto arr[], int n);
 
->>>>>>> Stashed changes
+    int busquedaBinariaPorId(producto arr[], int n, int target);
+    int busquedaBinariaPorNombre(producto arr[], int n, const std::string& target);
+    int busquedaBinariaPorPrecio(producto arr[], int n, double target);
+    int busquedaBinariaPorCantidad(producto arr[], int n, int target);
 };
 
-#endif // !LISTA_PRODUCTOS_H
+#endif // LISTA_PRODUCTOS_H

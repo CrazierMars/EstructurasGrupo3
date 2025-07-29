@@ -1,37 +1,44 @@
+#include <windows.h>
 #include <iostream>
 #include "listaProductos.h"
-#include <thread>
-#include <chrono>
+#include "producto.h"
+#include "colaClientes.h"
+#include "cliente.h"
+
 using namespace std;
 
 void mostrarMenu() {
-    this_thread::sleep_for(chrono::seconds(1));
-    cout << "\n==============================\n";
-    cout << "\n--- MENU PRINCIPAL ---\n";
-    cout << "1. Agregar punto al inicio\n";
-    cout << "2. Agregar punto al final\n";
-    cout << "3. Eliminar punto\n";
-    cout << "4. Imprimir lista de puntos\n";
-    cout << "5. Buscar punto\n";
-    cout << "6. Invertir lista\n";
-    cout << "7. Mostrar longitud de la lista\n";
-    cout << "8. Punto más cercano al origen\n";
-    cout << "9. Punto más lejano al origen\n";
-    cout << "10. Salir\n";
-    cout << "\n==============================\n";
-    // cout << "Seleccione una opción: ";
-}
-int main (){
-
-
-<<<<<<< Updated upstream
-    return 0;
-}
-=======
-void menuOrdenamientosInsercion() {
 	SetConsoleOutputCP(CP_UTF8);
 	setlocale(LC_ALL, "es_ES.UTF-8");
-	cout << "\n--- Ordenamiento por Inserción ---" << endl;
+	cout << "\n--- Menú Principal ---" << endl;
+	cout << "1. Agregar producto al catálogo" << endl;
+	cout << "2. Eliminar producto del catálogo" << endl;
+	cout << "3. Mostrar catálogo" << endl;
+	cout << "4. Agregar cliente a la cola" << endl;
+	cout << "5. Atender cliente (quitar de la cola)" << endl;
+	cout << "6. Mostrar clientes en cola" << endl;
+	cout << "7. Ordenar catálogo" << endl;
+	cout << "8. Buscar en catálogo" << endl;
+	cout << "9. Salir" << endl;
+	cout << "Seleccione una opción: ";
+}
+
+void menuOrdenamientos() {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Menú de Ordenamientos ---" << endl;
+	cout << "1. Ordenamiento por Inserción" << endl;
+	cout << "2. Ordenamiento por Selección" << endl;
+	cout << "3. Ordenamiento por Burbuja" << endl;
+	cout << "4. Ordenamiento por Mezcla" << endl;
+	cout << "5. Volver." << endl;
+	cout << "Seleccione una opción: ";
+}
+
+void menuOrdenamientoSeleccionado(string tipoOrdenamiento) {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Ordenamiento por " << tipoOrdenamiento << " ---" << endl;
 	cout << "1. Ordenar por ID Ascendente" << endl;
 	cout << "2. Ordenar por ID Descendente" << endl;
 	cout << "3. Ordenar por Nombre Ascendente" << endl;
@@ -43,7 +50,23 @@ void menuOrdenamientosInsercion() {
 	cout << "Seleccione una opción: ";
 }
 
-void procesarSeleccionInsercion(listaProductos& catalogo) {
+void menuBusqueda() {
+	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_ALL, "es_ES.UTF-8");
+	cout << "\n--- Menú de Búsqueda ---" << endl;
+	cout << "1. Buscar por ID (lineal)" << endl;
+	cout << "2. Buscar por Nombre (lineal)" << endl;
+	cout << "3. Buscar por Precio (lineal)" << endl;
+	cout << "4. Buscar por Cantidad (lineal)" << endl;
+	cout << "5. Buscar por ID (binaria)" << endl;
+	cout << "6. Buscar por Nombre (binaria)" << endl;
+	cout << "7. Buscar por Precio (binaria)" << endl;
+	cout << "8. Buscar por Cantidad (binaria)" << endl;
+	cout << "9. Volver" << endl;
+	cout << "Seleccione una opción: ";
+}
+
+void mostrarCatalogoOrdenado(listaProductos& catalogo, string metodo) {
 	int opcion;
 	cin >> opcion;
 	int n = catalogo.contarProductos();
@@ -60,134 +83,76 @@ void procesarSeleccionInsercion(listaProductos& catalogo) {
 		arr[i] = *arrPtr[i];
 	}
 
-	switch (opcion) {
-		case 1:
-			catalogo.ordenamientoInsercionIdAsc(arr, n);
-			cout << "\nCatálogo ordenado por ID Ascendente:\n";
-			break;
-		case 2:
-			catalogo.ordenamientoInsercionIdDesc(arr, n);
-			cout << "\nCatálogo ordenado por ID Descendente:\n";
-			break;
-		case 3:
-			catalogo.ordenamientoInsercionNombreAsc(arr, n);
-			cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
-			break;
-		case 4:
-			catalogo.ordenamientoInsercionNombreDesc(arr, n);
-			cout << "\nCatálogo ordenado por Nombre Descendente:\n";
-			break;
-		case 5:
-			catalogo.ordenamientoInsercionPrecioAsc(arr, n);
-			cout << "\nCatálogo ordenado por Precio Ascendente:\n";
-			break;
-		case 6:
-			catalogo.ordenamientoInsercionPrecioDesc(arr, n);
-			cout << "\nCatálogo ordenado por Precio Descendente:\n";
-			break;
-		case 7:
-			catalogo.ordenamientoInsercionCantidadAsc(arr, n);
-			cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
-			break;
-		case 8:
-			catalogo.ordenamientoInsercionCantidadDesc(arr, n);
-			cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
-			break;
-		default:
-			cout << "Opción no válida." << endl;
-			delete[] arrPtr;
-			delete[] arr;
-			return;
-	}
+    if (metodo == "inserción") {
+        switch (opcion) {
+            case 1: catalogo.ordenamientoInsercionIdAsc(arr, n); break;
+            case 2: catalogo.ordenamientoInsercionIdDesc(arr, n); break;
+            case 3: catalogo.ordenamientoInsercionNombreAsc(arr, n); break;
+            case 4: catalogo.ordenamientoInsercionNombreDesc(arr, n); break;
+            case 5: catalogo.ordenamientoInsercionPrecioAsc(arr, n); break;
+            case 6: catalogo.ordenamientoInsercionPrecioDesc(arr, n); break;
+            case 7: catalogo.ordenamientoInsercionCantidadAsc(arr, n); break;
+            case 8: catalogo.ordenamientoInsercionCantidadDesc(arr, n); break;
+            default: cout << "Opción no válida." << endl; delete[] arrPtr; delete[] arr; return;
+        }
+    }
+    if (metodo == "burbuja") {
+        switch (opcion) {
+            case 1: catalogo.ordenamientoBurbujaIdAsc(arr, n); break;
+            case 2: catalogo.ordenamientoBurbujaIdDesc(arr, n); break;
+            case 3: catalogo.ordenamientoBurbujaNombreAsc(arr, n); break;
+            case 4: catalogo.ordenamientoBurbujaNombreDesc(arr, n); break;
+            case 5: catalogo.ordenamientoBurbujaPrecioAsc(arr, n); break;
+            case 6: catalogo.ordenamientoBurbujaPrecioDesc(arr, n); break;
+            case 7: catalogo.ordenamientoBurbujaCantidadAsc(arr, n); break;
+            case 8: catalogo.ordenamientoBurbujaCantidadDesc(arr, n); break;
+            default: cout << "Opción no válida." << endl; delete[] arrPtr; delete[] arr; return;
+        }
+    }
+    if (metodo == "mezcla") {
+        switch (opcion) {
+            case 1: catalogo.ordenamientoMezclaIdAsc(arr, n); break;
+            case 2: catalogo.ordenamientoMezclaIdDesc(arr, n); break;
+            case 3: catalogo.ordenamientoMezclaNombreAsc(arr, n); break;
+            case 4: catalogo.ordenamientoMezclaNombreDesc(arr, n); break;
+            case 5: catalogo.ordenamientoMezclaPrecioAsc(arr, n); break;
+            case 6: catalogo.ordenamientoMezclaPrecioDesc(arr, n); break;
+            case 7: catalogo.ordenamientoMezclaCantidadAsc(arr, n); break;
+            case 8: catalogo.ordenamientoMezclaCantidadDesc(arr, n); break;
+            default: cout << "Opción no válida." << endl; delete[] arrPtr; delete[] arr; return;
+        }
+    }
+    if (metodo == "seleccion") {
+        switch (opcion) {
+            case 1: catalogo.ordenamientoSeleccionIdAsc(arr, n); break;
+            case 2: catalogo.ordenamientoSeleccionIdDesc(arr, n); break;
+            case 3: catalogo.ordenamientoSeleccionNombreAsc(arr, n); break;
+            case 4: catalogo.ordenamientoSeleccionNombreDesc(arr, n); break;
+            case 5: catalogo.ordenamientoSeleccionPrecioAsc(arr, n); break;
+            case 6: catalogo.ordenamientoSeleccionPrecioDesc(arr, n); break;
+            case 7: catalogo.ordenamientoSeleccionCantidadAsc(arr, n); break;
+            case 8: catalogo.ordenamientoSeleccionCantidadDesc(arr, n); break;
+            default: cout << "Opción no válida." << endl; delete[] arrPtr; delete[] arr; return;
+        }
+    }
+
+    string message = "\nCatálogo ordenado por ";
+
+    switch (opcion) {
+        case 1: message += "ID Ascendente:\n"; break;
+        case 2: message += "ID Descendente:\n"; break;
+        case 3: message += "Nombre Ascendente:\n"; break;
+        case 4: message += "Nombre Descendente:\n"; break;
+        case 5: message += "Precio Ascendente:\n"; break;
+        case 6: message += "Precio Descendente:\n"; break;
+        case 7: message += "Cantidad Ascendente:\n"; break;
+        case 8: message += "Cantidad Descendente:\n"; break;
+    }
+
+	cout << message;
 
 	for (int i = 0; i < n; ++i) {
-		cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
-			<< ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
-	}
-
-	delete[] arrPtr;
-	delete[] arr;
-}
-
-void menuOrdenamientosMezcla() {
-	SetConsoleOutputCP(CP_UTF8);
-	setlocale(LC_ALL, "es_ES.UTF-8");
-	cout << "\n--- Ordenamiento por Mezcla ---" << endl;
-	cout << "1. Ordenar por ID Ascendente" << endl;
-	cout << "2. Ordenar por ID Descendente" << endl;
-	cout << "3. Ordenar por Nombre Ascendente" << endl;
-	cout << "4. Ordenar por Nombre Descendente" << endl;
-	cout << "5. Ordenar por Precio Ascendente" << endl;
-	cout << "6. Ordenar por Precio Descendente" << endl;
-	cout << "7. Ordenar por Cantidad Ascendente" << endl;
-	cout << "8. Ordenar por Cantidad Descendente" << endl;
-	cout << "Seleccione una opción: ";
-}
-
-void procesarSeleccionMezcla(listaProductos& catalogo) {
-	int opcion;
-	cin >> opcion;
-	int n = catalogo.contarProductos();
-	if (n == 0) {
-		cout << "No hay productos para ordenar." << endl;
-		return;
-	}
-
-	producto** arrPtr = new producto*[n];
-	producto* actual = catalogo.getPrimero();
-	for (int i = 0; i < n && actual != nullptr; ++i) {
-		arrPtr[i] = actual;
-		actual = actual->getSiguiente();
-	}
-
-	producto* arr = new producto[n];
-	for (int i = 0; i < n; ++i) {
-		arr[i] = *arrPtr[i];
-	}
-
-	switch (opcion) {
-		case 1:
-			catalogo.OrdenamientoMezclaIdAsc(arr, n);
-			cout << "\nCatálogo ordenado por ID Ascendente:\n";
-			break;
-		case 2:
-			catalogo.OrdenamientoMezclaIdDesc(arr, n);
-			cout << "\nCatálogo ordenado por ID Descendente:\n";
-			break;
-		case 3:
-			catalogo.OrdenamientoMezclaNombreAsc(arr, n);
-			cout << "\nCatálogo ordenado por Nombre Ascendente:\n";
-			break;
-		case 4:
-			catalogo.OrdenamientoMezclaNombreDesc(arr, n);
-			cout << "\nCatálogo ordenado por Nombre Descendente:\n";
-			break;
-		case 5:
-			catalogo.OrdenamientoMezclaPrecioAsc(arr, n);
-			cout << "\nCatálogo ordenado por Precio Ascendente:\n";
-			break;
-		case 6:
-			catalogo.OrdenamientoMezclaPrecioDesc(arr, n);
-			cout << "\nCatálogo ordenado por Precio Descendente:\n";
-			break;
-		case 7:
-			catalogo.OrdenamientoMezclaCantidadAsc(arr, n);
-			cout << "\nCatálogo ordenado por Cantidad Ascendente:\n";
-			break;
-		case 8:
-			catalogo.OrdenamientoMezclaCantidadDesc(arr, n);
-			cout << "\nCatálogo ordenado por Cantidad Descendente:\n";
-			break;
-		default:
-			cout << "Opción no válida." << endl;
-			delete[] arrPtr;
-			delete[] arr;
-			return;
-	}
-
-	for (int i = 0; i < n; ++i) {
-		cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
-			<< ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
+		cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre() << ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
 	}
 
 	delete[] arrPtr;
@@ -218,6 +183,10 @@ int main() {
 	string nombre, apellidos, cedula, prodNombre;
 	double precio;
 	int cantidad, edad, nprod, cant, prioridad;
+
+	catalogo.insertarFinal("Arroz", 2000, 5);
+	catalogo.insertarFinal("Frijoles", 1000, 7);
+	catalogo.insertarFinal("Leche", 4000, 3);
 
 	do {
 		mostrarMenu();
@@ -351,117 +320,149 @@ int main() {
 					break;
 				}
 
-                int tipoOrdenamiento;
-                do {
-                    menuOrdenamientos();
-                    cin >> tipoOrdenamiento;
-                    switch (tipoOrdenamiento) {
-                        case 1:
-                            menuOrdenamientosInsercion();
-                            procesarSeleccionInsercion(catalogo);
-                            break;
-                        case 2:
-                            cout << "Aqui deberia ir ordenamiento por seleccion" << endl;
-                            break;
-                        case 3:
-                            cout << "Aqui deberia ir ordenamiento por burbuja" << endl;
-                            break;
-                        case 4:
-                            menuOrdenamientosMezcla();
-                            procesarSeleccionMezcla(catalogo);
-                            break;
-                        default:
-                            cout << "Opción no válida.\n";
-                            break;
-                    }
-                } while (tipoOrdenamiento != 5);
-            }
+				int tipoOrdenamiento;
+				do {
+					menuOrdenamientos();
+					cin >> tipoOrdenamiento;
+					switch (tipoOrdenamiento) {
+						case 1:
+							menuOrdenamientoSeleccionado("Inserción");
+							mostrarCatalogoOrdenado(catalogo, "inserción");
+							break;
+						case 2:
+							menuOrdenamientoSeleccionado("Selección");
+							mostrarCatalogoOrdenado(catalogo, "selección");
+							break;
+						case 3:
+							menuOrdenamientoSeleccionado("Burbuja");
+							mostrarCatalogoOrdenado(catalogo, "burbuja");
+							break;
+						case 4:
+							menuOrdenamientoSeleccionado("Mezcla");
+							mostrarCatalogoOrdenado(catalogo, "mezcla");
+							break;
+						case 5:
+							cout << "\nVolviendo al menu principal..." << endl;
+							break;
+						default:
+							cout << "Opción no válida.\n";
+							break;
+					}
+				} while (tipoOrdenamiento != 5);
+				break;
+			}
+			case '8': {
+				if (catalogo.estaVacia()) {
+					cout << "El catálogo está vacío. No se puede ordenar.\n";
+					break;
+				}
 
-			case '7':
-    			if (catalogo.estaVacia()) {
-        			cout << "El catálogo está vacío. No se puede ordenar.\n";
-        			break;
-    		}
+				int tipoBusqueda;
+				int id = 0, cantidad = 0;
+				double precio = 0.0;
+				string nombre = "";
+				producto* productoEncontrado = nullptr;
 
-    MenuOrdenamientos();
-    int metodo;
-    cin >> metodo;
+				int n = catalogo.contarProductos();
 
-    switch (metodo) {
-        case 1: MenuOrdenamientosInsercion(); ProcesarSeleccionInsercion(catalogo); break;
-        case 3: MenuOrdenamientosBurbuja(); ProcesarSeleccionBurbuja(catalogo); break;
-        default: cout << "Método aún no implementado.\n"; break;
-    }
-    break;
+				producto** arrPtr = new producto*[n];
+				producto* actual = catalogo.getPrimero();
+				for (int i = 0; i < n && actual != nullptr; ++i) {
+					arrPtr[i] = actual;
+					actual = actual->getSiguiente();
+				}
 
-        }
-	} while (opcion != '8');
+				producto* arr = new producto[n];
+				for (int i = 0; i < n; ++i) {
+					arr[i] = *arrPtr[i];
+				}
 
-
-	void MenuOrdenamientosBurbuja() {
-    SetConsoleOutputCP(CP_UTF8);
-    setlocale(LC_ALL, "es_ES.UTF-8");
-    cout << "\n--- Ordenamiento por Burbuja ---" << endl;
-    cout << "1. Ordenar por ID Ascendente" << endl;
-    cout << "2. Ordenar por ID Descendente" << endl;
-    cout << "3. Ordenar por Nombre Ascendente" << endl;
-    cout << "4. Ordenar por Nombre Descendente" << endl;
-    cout << "5. Ordenar por Precio Ascendente" << endl;
-    cout << "6. Ordenar por Precio Descendente" << endl;
-    cout << "7. Ordenar por Cantidad Ascendente" << endl;
-    cout << "8. Ordenar por Cantidad Descendente" << endl;
-    cout << "Seleccione una opción: ";
-}
-
-
-void ProcesarSeleccionBurbuja(listaProductos& catalogo) {
-    int opcion;
-    cin >> opcion;
-    int n = catalogo.contarProductos();
-
-    if (n == 0) {
-        cout << "No hay productos para ordenar." << endl;
-        return;
-    }
-
-    producto** arrPtr = new producto*[n];
-    producto* actual = catalogo.getPrimero();
-    for (int i = 0; i < n && actual != nullptr; ++i) {
-        arrPtr[i] = actual;
-        actual = actual->getSiguiente();
-    }
-
-    producto* arr = new producto[n];
-    for (int i = 0; i < n; ++i) {
-        arr[i] = *arrPtr[i];
-    }
-
-    switch (opcion) {
-        case 1: catalogo.OrdenamientoBurbujaIdAsc(arr, n); break;
-        case 2: catalogo.OrdenamientoBurbujaIdDesc(arr, n); break;
-        case 3: catalogo.OrdenamientoBurbujaNombreAsc(arr, n); break;
-        case 4: catalogo.OrdenamientoBurbujaNombreDesc(arr, n); break;
-        case 5: catalogo.OrdenamientoBurbujaPrecioAsc(arr, n); break;
-        case 6: catalogo.OrdenamientoBurbujaPrecioDesc(arr, n); break;
-        case 7: catalogo.OrdenamientoBurbujaCantidadAsc(arr, n); break;
-        case 8: catalogo.OrdenamientoBurbujaCantidadDesc(arr, n); break;
-        default: cout << "Opción no válida." << endl;
-            delete[] arrPtr;
-            delete[] arr;
-            return;
-    }
-
-    for (int i = 0; i < n; ++i) {
-        cout << "ID: " << arr[i].getId() << ", Nombre: " << arr[i].getNombre()
-             << ", Precio: " << arr[i].getPrecio() << ", Cantidad: " << arr[i].getCantidad() << endl;
-    }
-
-    delete[] arrPtr;
-    delete[] arr;
-}
-
+				do {
+					menuBusqueda();
+					cin >> tipoBusqueda;
+					switch (tipoBusqueda) {
+						case 1:
+							cout << "Ingrese el ID del producto a buscar: ";
+							cin >> id;
+							productoEncontrado = catalogo.buscarId(id);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 2:
+							cout << "Ingrese el nombre del producto a buscar: ";
+							cin >> nombre;
+							productoEncontrado = catalogo.buscarNombre(nombre);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 3:
+							cout << "Ingrese el precio del producto a buscar: ";
+							cin >> precio;
+							productoEncontrado = catalogo.buscarPrecio(precio);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						case 4:
+							cout << "Ingrese el cantidad del producto a buscar: ";
+							cin >> cantidad;
+							productoEncontrado = catalogo.buscarCantidad(cantidad);
+							if (productoEncontrado) {
+								productoEncontrado->imprimir();
+							} else {
+								cout << "\nProducto no encontrado.\n";
+							}
+							break;
+						// Búsqueda binaria
+						// case 5:
+						// 	cout << "Ingrese el ID del producto a buscar: ";
+						// 	cin >> id;
+						// 	int i = catalogo.busquedaBinariaPorId(arr, n, id);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						// case 6:
+						// 	cout << "Ingrese el nombre del producto a buscar: ";
+						// 	cin >> nombre;
+						// 	int i = catalogo.busquedaBinariaPorNombre(arr, n, nombre);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						// case 7:
+						// 	cout << "Ingrese el precio del producto a buscar: ";
+						// 	cin >> precio;
+						// 	int i = catalogo.busquedaBinariaPorPrecio(arr, n, precio);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						// case 8:
+						// 	cout << "Ingrese el cantidad del producto a buscar: ";
+						// 	cin >> cantidad;
+						// 	int i = catalogo.busquedaBinariaPorCantidad(arr, n, cantidad);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						case 9:
+							cout << "\nVolviendo al menu principal..." << endl;
+							break;
+						default:
+							cout << "Opción no válida.\n";
+							break;
+					}
+				} while (tipoBusqueda != 9);
+					break;
+			}
+		}
+	} while (opcion != '9');
 
 	cout << "Programa finalizado.\n";
 	return 0;
 }
->>>>>>> Stashed changes

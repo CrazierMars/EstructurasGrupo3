@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-//pendiente
-=======
 #include "listaProductos.h"
 #include <iostream>
 #include <functional>
@@ -43,7 +40,6 @@ producto* listaProductos::buscarId(int id) {
         actual = actual->getSiguiente();
     }
     return nullptr;
-    cout << "Producto con ID " << id << " no encontrado." << endl;
 }
 producto* listaProductos::buscarNombre(string nombre) {
     if (estaVacia()) {
@@ -57,7 +53,6 @@ producto* listaProductos::buscarNombre(string nombre) {
         actual = actual->getSiguiente();
     }
     return nullptr;
-    cout << "Producto con nombre " << nombre << "no encontrado." << endl;
 }
 producto* listaProductos::buscarPrecio(double precio) {
     if (estaVacia()) {
@@ -71,7 +66,6 @@ producto* listaProductos::buscarPrecio(double precio) {
         actual = actual->getSiguiente();
     }
     return nullptr; 
-    cout << "Producto con precio " << precio << "no encontrado." << endl;
 }
 producto* listaProductos::buscarCantidad(int cantidad) {
     if (estaVacia()) {
@@ -85,7 +79,6 @@ producto* listaProductos::buscarCantidad(int cantidad) {
         actual = actual->getSiguiente();
     }
     return nullptr; 
-    cout << "Producto con cantidad " << cantidad << " no encontrado." << endl;
 }
 
 void listaProductos::insertarInicio(string nombre, double precio, int cantidad) {
@@ -181,7 +174,7 @@ bool listaProductos::estaVacia() {
 
 bool listaProductos::imprimirVacia() {
     if (estaVacia()) {
-        cout << "La lista esta vacía." << endl;
+        cout << "La lista esta vacia." << endl;
         return true;
     }
 
@@ -193,154 +186,313 @@ int listaProductos::generarId() {
 }
 
 // Métodos de ordenamiento
+
 // Ordenamiento por Insercion
 void listaProductos::ordenamientoInsercionIdAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getId() > temp.getId()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionIdDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getId() < temp.getId()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionNombreAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getNombre() > temp.getNombre()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionNombreDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getNombre() < temp.getNombre()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionPrecioAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getPrecio() > temp.getPrecio()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionPrecioDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getPrecio() < temp.getPrecio()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionCantidadAsc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getCantidad() > temp.getCantidad()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
+    int comparaciones = 0;
     for (int i = 1; i < n; i++) {
         producto temp = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j].getCantidad() < temp.getCantidad()) {
             arr[j + 1] = arr[j];
+            comparaciones++;
             j--;
         }
         arr[j + 1] = temp;
     }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
+// Ordenamiento por selección
+
+// Función auxiliar para intercambiar dos productos
+void listaProductos::auxIntercambiar(producto& a, producto& b) {
+    producto temp = a;
+    a = b;
+    b = temp;
+}
+
+// ID
+void listaProductos::ordenamientoSeleccionIdAsc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getId() < arr[min].getId()) {
+                min = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[min]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+void listaProductos::ordenamientoSeleccionIdDesc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int max = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getId() > arr[max].getId()) {
+                max = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[max]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+
+// Nombre
+void listaProductos::ordenamientoSeleccionNombreAsc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getNombre() < arr[min].getNombre()) {
+                min = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[min]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+void listaProductos::ordenamientoSeleccionNombreDesc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int max = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getNombre() > arr[max].getNombre()) {
+                max = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[max]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+
+// Precio
+void listaProductos::ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getPrecio() < arr[min].getPrecio()) {
+                min = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[min]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+void listaProductos::ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int max = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getPrecio() > arr[max].getPrecio()) {
+                max = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[max]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+
+// Cantidad
+void listaProductos::ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getCantidad() < arr[min].getCantidad()) {
+                min = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[min]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+void listaProductos::ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
+    int comparaciones = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int max = i;
+        for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+            if (arr[j].getCantidad() > arr[max].getCantidad()) {
+                max = j;
+            }
+        }
+        auxIntercambiar(arr[i], arr[max]);
+    }
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
+}
+
+
 //Metodos por mezcla
-void merge(producto arr[], int izquierda, int mitad, int derecha, function<bool(producto&, producto&)> comp) {
+void merge(producto arr[], int izquierda, int mitad, int derecha, function<bool(producto&, producto&)> comp, int& comparaciones) {
     int n1 = mitad - izquierda + 1;
     int n2 = derecha - mitad;
 
     producto* L = new producto[n1];
     producto* R = new producto[n2];
 
-    for (int i = 0; i < n1; i++) L[i] = arr[izquierda + i];
-    for (int j = 0; j < n2; j++) R[j] = arr[mitad + 1 + j];
+    for (int i = 0; i < n1; i++) L[i] = arr[izquierda + i], comparaciones++;
+    for (int j = 0; j < n2; j++) R[j] = arr[mitad + 1 + j], comparaciones++;
 
     int i = 0, j = 0, k = izquierda;
     while (i < n1 && j < n2) {
+        comparaciones++;
         if (comp(L[i], R[j])) arr[k++] = L[i++];
         else arr[k++] = R[j++];
     }
 
-    while (i < n1) arr[k++] = L[i++];
-    while (j < n2) arr[k++] = R[j++];
+    while (i < n1) arr[k++] = L[i++], comparaciones++;
+    while (j < n2) arr[k++] = R[j++], comparaciones++;
 
     delete[] L;
     delete[] R;
 }
 
-void mergeSort(producto arr[], int izquierda, int derecha, function<bool(producto&, producto&)> comp) {
+void mergeSort(producto arr[], int izquierda, int derecha, function<bool(producto&, producto&)> comp, int& comparaciones) {
     if (izquierda < derecha) {
         int mitad = izquierda + (derecha - izquierda) / 2;
-        mergeSort(arr, izquierda, mitad, comp);
-        mergeSort(arr, mitad + 1, derecha, comp);
-        merge(arr, izquierda, mitad, derecha, comp);
+        mergeSort(arr, izquierda, mitad, comp, comparaciones);
+        mergeSort(arr, mitad + 1, derecha, comp, comparaciones);
+        merge(arr, izquierda, mitad, derecha, comp, comparaciones);
     }
 }
 
 #define GEN_ORDEN_MEZCLA(nombre, criterio, operador) \
 void listaProductos::nombre(producto arr[], int n) { \
+    int comparaciones = 0; \
     mergeSort(arr, 0, n - 1, [](producto& a, producto& b) { \
         return a.criterio() operador b.criterio(); \
-    }); \
+    }, comparaciones); \
+    cout << "\nComparaciones realizadas: " << comparaciones << endl; \
 }
 
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaIdAsc, getId, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaIdDesc, getId, >)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaNombreAsc, getNombre, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaNombreDesc, getNombre, >)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaPrecioAsc, getPrecio, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaPrecioDesc, getPrecio, >)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaCantidadAsc, getCantidad, <)
-GEN_ORDEN_MEZCLA(OrdenamientoMezclaCantidadDesc, getCantidad, >)
 
-// Ordenamiento por ID Ascendente
-void listaProductos::OrdenamientoBurbujaIdAsc(producto arr[], int n) {
+GEN_ORDEN_MEZCLA(ordenamientoMezclaIdAsc, getId, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaIdDesc, getId, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaNombreAsc, getNombre, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaNombreDesc, getNombre, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaPrecioAsc, getPrecio, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaPrecioDesc, getPrecio, >)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadAsc, getCantidad, <)
+GEN_ORDEN_MEZCLA(ordenamientoMezclaCantidadDesc, getCantidad, >)
+
+// Ordenamiento burbuja
+void listaProductos::ordenamientoBurbujaIdAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getId() > arr[j + 1].getId()) {
@@ -349,9 +501,7 @@ void listaProductos::OrdenamientoBurbujaIdAsc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por ID Descendente
-void listaProductos::OrdenamientoBurbujaIdDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaIdDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getId() < arr[j + 1].getId()) {
@@ -360,9 +510,7 @@ void listaProductos::OrdenamientoBurbujaIdDesc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por Nombre Ascendente
-void listaProductos::OrdenamientoBurbujaNombreAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaNombreAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getNombre() > arr[j + 1].getNombre()) {
@@ -371,9 +519,7 @@ void listaProductos::OrdenamientoBurbujaNombreAsc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por Nombre Descendente
-void listaProductos::OrdenamientoBurbujaNombreDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaNombreDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getNombre() < arr[j + 1].getNombre()) {
@@ -382,9 +528,7 @@ void listaProductos::OrdenamientoBurbujaNombreDesc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por Precio Ascendente
-void listaProductos::OrdenamientoBurbujaPrecioAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaPrecioAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getPrecio() > arr[j + 1].getPrecio()) {
@@ -393,9 +537,7 @@ void listaProductos::OrdenamientoBurbujaPrecioAsc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por Precio Descendente
-void listaProductos::OrdenamientoBurbujaPrecioDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaPrecioDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getPrecio() < arr[j + 1].getPrecio()) {
@@ -404,9 +546,7 @@ void listaProductos::OrdenamientoBurbujaPrecioDesc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por Cantidad Ascendente
-void listaProductos::OrdenamientoBurbujaCantidadAsc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaCantidadAsc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getCantidad() > arr[j + 1].getCantidad()) {
@@ -415,9 +555,7 @@ void listaProductos::OrdenamientoBurbujaCantidadAsc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
-
-// Ordenamiento por Cantidad Descendente
-void listaProductos::OrdenamientoBurbujaCantidadDesc(producto arr[], int n) {
+void listaProductos::ordenamientoBurbujaCantidadDesc(producto arr[], int n) {
     for (int i = 0; i < n - 1; ++i)
         for (int j = 0; j < n - i - 1; ++j)
             if (arr[j].getCantidad() < arr[j + 1].getCantidad()) {
@@ -426,4 +564,57 @@ void listaProductos::OrdenamientoBurbujaCantidadDesc(producto arr[], int n) {
                 arr[j + 1] = temp;
             }
 }
->>>>>>> Stashed changes
+
+// Búsqueda binaria
+
+int listaProductos::busquedaBinariaPorId(producto arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        int id = arr[mid].getId();
+
+        if (id == target) return mid;
+        if (id < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+int listaProductos::busquedaBinariaPorNombre(producto arr[], int n, const std::string& target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        std::string nombre = arr[mid].getNombre();
+
+        if (nombre == target) return mid;
+        if (nombre < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+int listaProductos::busquedaBinariaPorPrecio(producto arr[], int n, double target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        double precio = arr[mid].getPrecio();
+
+        if (precio == target) return mid;
+        if (precio < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+int listaProductos::busquedaBinariaPorCantidad(producto arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        int cantidad = arr[mid].getCantidad();
+
+        if (cantidad == target) return mid;
+        if (cantidad < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
