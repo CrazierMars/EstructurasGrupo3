@@ -65,14 +65,15 @@ public:
     void ordenamientoMezclaCantidadAsc(producto arr[], int n);
     void ordenamientoMezclaCantidadDesc(producto arr[], int n);
     
-    void ordenamientoBurbujaIdAsc(producto arr[], int n);
-    void ordenamientoBurbujaIdDesc(producto arr[], int n);
-    void ordenamientoBurbujaNombreAsc(producto arr[], int n);
-    void ordenamientoBurbujaNombreDesc(producto arr[], int n);
-    void ordenamientoBurbujaPrecioAsc(producto arr[], int n);
-    void ordenamientoBurbujaPrecioDesc(producto arr[], int n);
-    void ordenamientoBurbujaCantidadAsc(producto arr[], int n);
-    void ordenamientoBurbujaCantidadDesc(producto arr[], int n);
+    // Actualizados: ahora devuelven int (repeticiones)
+    int ordenamientoBurbujaIdAsc(producto arr[], int n);
+    int ordenamientoBurbujaIdDesc(producto arr[], int n);
+    int ordenamientoBurbujaNombreAsc(producto arr[], int n);
+    int ordenamientoBurbujaNombreDesc(producto arr[], int n);
+    int ordenamientoBurbujaPrecioAsc(producto arr[], int n);
+    int ordenamientoBurbujaPrecioDesc(producto arr[], int n);
+    int ordenamientoBurbujaCantidadAsc(producto arr[], int n);
+    int ordenamientoBurbujaCantidadDesc(producto arr[], int n);
 
     int busquedaBinariaPorId(producto arr[], int n, int target);
     int busquedaBinariaPorNombre(producto arr[], int n, const std::string& target);
