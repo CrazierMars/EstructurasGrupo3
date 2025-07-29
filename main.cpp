@@ -422,34 +422,34 @@ int main() {
 							}
 							break;
 						// Búsqueda binaria
-						case 5:
-							cout << "Ingrese el ID del producto a buscar: ";
-							cin >> id;
-							int i = catalogo.busquedaBinariaPorId(arr, n, id);
-							if (i == -1) cout << "El producto no se encontró." << endl;
-							else cout << "El producto está en la posición número " << i + 1 << endl;
-							break;
-						case 6:
-							cout << "Ingrese el nombre del producto a buscar: ";
-							cin >> nombre;
-							int i = catalogo.busquedaBinariaPorNombre(arr, n, nombre);
-							if (i == -1) cout << "El producto no se encontró." << endl;
-							else cout << "El producto está en la posición número " << i + 1 << endl;
-							break;
-						case 7:
-							cout << "Ingrese el precio del producto a buscar: ";
-							cin >> precio;
-							int i = catalogo.busquedaBinariaPorPrecio(arr, n, precio);
-							if (i == -1) cout << "El producto no se encontró." << endl;
-							else cout << "El producto está en la posición número " << i + 1 << endl;
-							break;
-						case 8:
-							cout << "Ingrese el cantidad del producto a buscar: ";
-							cin >> cantidad;
-							int i = catalogo.busquedaBinariaPorCantidad(arr, n, cantidad);
-							if (i == -1) cout << "El producto no se encontró." << endl;
-							else cout << "El producto está en la posición número " << i + 1 << endl;
-							break;
+						// case 5:
+						// 	cout << "Ingrese el ID del producto a buscar: ";
+						// 	cin >> id;
+						// 	int i = catalogo.busquedaBinariaPorId(arr, n, id);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						// case 6:
+						// 	cout << "Ingrese el nombre del producto a buscar: ";
+						// 	cin >> nombre;
+						// 	int i = catalogo.busquedaBinariaPorNombre(arr, n, nombre);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						// case 7:
+						// 	cout << "Ingrese el precio del producto a buscar: ";
+						// 	cin >> precio;
+						// 	int i = catalogo.busquedaBinariaPorPrecio(arr, n, precio);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
+						// case 8:
+						// 	cout << "Ingrese el cantidad del producto a buscar: ";
+						// 	cin >> cantidad;
+						// 	int i = catalogo.busquedaBinariaPorCantidad(arr, n, cantidad);
+						// 	if (i == -1) cout << "El producto no se encontró." << endl;
+						// 	else cout << "El producto está en la posición número " << i + 1 << endl;
+						// 	break;
 						case 9:
 							cout << "\nVolviendo al menu principal..." << endl;
 							break;

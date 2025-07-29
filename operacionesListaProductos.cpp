@@ -200,7 +200,7 @@ void listaProductos::ordenamientoInsercionIdAsc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionIdDesc(producto arr[], int n) {
@@ -215,7 +215,7 @@ void listaProductos::ordenamientoInsercionIdDesc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionNombreAsc(producto arr[], int n) {
@@ -230,7 +230,7 @@ void listaProductos::ordenamientoInsercionNombreAsc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionNombreDesc(producto arr[], int n) {
@@ -245,7 +245,7 @@ void listaProductos::ordenamientoInsercionNombreDesc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionPrecioAsc(producto arr[], int n) {
@@ -260,7 +260,7 @@ void listaProductos::ordenamientoInsercionPrecioAsc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionPrecioDesc(producto arr[], int n) {
@@ -275,7 +275,7 @@ void listaProductos::ordenamientoInsercionPrecioDesc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionCantidadAsc(producto arr[], int n) {
@@ -290,7 +290,7 @@ void listaProductos::ordenamientoInsercionCantidadAsc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
@@ -305,7 +305,7 @@ void listaProductos::ordenamientoInsercionCantidadDesc(producto arr[], int n) {
         }
         arr[j + 1] = temp;
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 // Ordenamiento por selección
@@ -330,7 +330,7 @@ void listaProductos::ordenamientoSeleccionIdAsc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[min]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 void listaProductos::ordenamientoSeleccionIdDesc(producto arr[], int n) {
     int comparaciones = 0;
@@ -344,7 +344,7 @@ void listaProductos::ordenamientoSeleccionIdDesc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[max]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 // Nombre
@@ -360,7 +360,7 @@ void listaProductos::ordenamientoSeleccionNombreAsc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[min]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 void listaProductos::ordenamientoSeleccionNombreDesc(producto arr[], int n) {
     int comparaciones = 0;
@@ -374,7 +374,7 @@ void listaProductos::ordenamientoSeleccionNombreDesc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[max]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 // Precio
@@ -390,7 +390,7 @@ void listaProductos::ordenamientoSeleccionPrecioAsc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[min]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 void listaProductos::ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
     int comparaciones = 0;
@@ -404,7 +404,7 @@ void listaProductos::ordenamientoSeleccionPrecioDesc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[max]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 // Cantidad
@@ -420,7 +420,7 @@ void listaProductos::ordenamientoSeleccionCantidadAsc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[min]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 void listaProductos::ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
     int comparaciones = 0;
@@ -434,7 +434,7 @@ void listaProductos::ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
         }
         auxIntercambiar(arr[i], arr[max]);
     }
-    cout << "Comparaciones realizadas: " << comparaciones << endl;
+    cout << "\nComparaciones realizadas: " << comparaciones << endl;
 }
 
 
@@ -478,7 +478,7 @@ void listaProductos::nombre(producto arr[], int n) { \
     mergeSort(arr, 0, n - 1, [](producto& a, producto& b) { \
         return a.criterio() operador b.criterio(); \
     }, comparaciones); \
-    cout << "Total de comparaciones realizadas: " << comparaciones << endl; \
+    cout << "\nComparaciones realizadas: " << comparaciones << endl; \
 }
 
 
