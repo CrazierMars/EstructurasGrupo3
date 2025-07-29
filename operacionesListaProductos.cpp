@@ -439,44 +439,48 @@ void listaProductos::ordenamientoSeleccionCantidadDesc(producto arr[], int n) {
 
 
 //Metodos por mezcla
-void merge(producto arr[], int izquierda, int mitad, int derecha, function<bool(producto&, producto&)> comp) {
+void merge(producto arr[], int izquierda, int mitad, int derecha, function<bool(producto&, producto&)> comp, int& comparaciones) {
     int n1 = mitad - izquierda + 1;
     int n2 = derecha - mitad;
 
     producto* L = new producto[n1];
     producto* R = new producto[n2];
 
-    for (int i = 0; i < n1; i++) L[i] = arr[izquierda + i];
-    for (int j = 0; j < n2; j++) R[j] = arr[mitad + 1 + j];
+    for (int i = 0; i < n1; i++) L[i] = arr[izquierda + i], comparaciones++;
+    for (int j = 0; j < n2; j++) R[j] = arr[mitad + 1 + j], comparaciones++;
 
     int i = 0, j = 0, k = izquierda;
     while (i < n1 && j < n2) {
+        comparaciones++;
         if (comp(L[i], R[j])) arr[k++] = L[i++];
         else arr[k++] = R[j++];
     }
 
-    while (i < n1) arr[k++] = L[i++];
-    while (j < n2) arr[k++] = R[j++];
+    while (i < n1) arr[k++] = L[i++], comparaciones++;
+    while (j < n2) arr[k++] = R[j++], comparaciones++;
 
     delete[] L;
     delete[] R;
 }
 
-void mergeSort(producto arr[], int izquierda, int derecha, function<bool(producto&, producto&)> comp) {
+void mergeSort(producto arr[], int izquierda, int derecha, function<bool(producto&, producto&)> comp, int& comparaciones) {
     if (izquierda < derecha) {
         int mitad = izquierda + (derecha - izquierda) / 2;
-        mergeSort(arr, izquierda, mitad, comp);
-        mergeSort(arr, mitad + 1, derecha, comp);
-        merge(arr, izquierda, mitad, derecha, comp);
+        mergeSort(arr, izquierda, mitad, comp, comparaciones);
+        mergeSort(arr, mitad + 1, derecha, comp, comparaciones);
+        merge(arr, izquierda, mitad, derecha, comp, comparaciones);
     }
 }
 
 #define GEN_ORDEN_MEZCLA(nombre, criterio, operador) \
 void listaProductos::nombre(producto arr[], int n) { \
+    int comparaciones = 0; \
     mergeSort(arr, 0, n - 1, [](producto& a, producto& b) { \
         return a.criterio() operador b.criterio(); \
-    }); \
+    }, comparaciones); \
+    cout << "Total de comparaciones realizadas: " << comparaciones << endl; \
 }
+
 
 GEN_ORDEN_MEZCLA(ordenamientoMezclaIdAsc, getId, <)
 GEN_ORDEN_MEZCLA(ordenamientoMezclaIdDesc, getId, >)
