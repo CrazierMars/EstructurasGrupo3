@@ -13,8 +13,11 @@ double producto::getPrecio() {
 int producto::getCantidad() {
     return cantidad;
 }
-producto* producto::getSiguiente() {
-    return siguiente;
+producto* producto::getHijoIzquierdo() { 
+    return hijoIzquierdo;
+}
+producto* producto::getHijoDerecho() { 
+    return hijoDerecho; 
 }
 
 void producto::setId(int id) {
@@ -29,9 +32,14 @@ void producto::setPrecio(double precio) {
 void producto::setCantidad(int cantidad) {
     this->cantidad = cantidad;
 }
-void producto::setSiguiente(producto* siguiente) {
-    this->siguiente = siguiente;
+
+void producto::setHijoIzquierdo(producto* hijoIzquierdo) { 
+    this->hijoIzquierdo = hijoIzquierdo; 
 }
+void producto::setHijoDerecho (producto* hijoDerecho){ 
+    this->hijoDerecho  = hijoDerecho;  
+}
+
 
 void producto::imprimir() {
     std::cout << "ID: " << id << " | Nombre: " << nombre << " | Precio: " << precio << " | Cantidad: " << cantidad << std::endl;

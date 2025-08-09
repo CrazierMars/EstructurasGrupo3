@@ -9,8 +9,7 @@ private:
     std::string nombre;
     double precio;
     int cantidad;
-    producto* hijoIzquierdo;
-    producto* hijoDerecho;
+    producto* siguiente;
 
 public:
     // Constructor por defecto
@@ -19,8 +18,7 @@ public:
         nombre = "";
         precio = 0.0;
         cantidad = 0;
-        hijoIzquierdo = nullptr;
-        hijoDerecho = nullptr;
+        siguiente = nullptr;
     }
     // Constructor parametrizado
     producto(int pId, const std::string& pNombre, double pPrecio, int pCantidad){
@@ -28,23 +26,20 @@ public:
         nombre = pNombre;
         precio = pPrecio;
         cantidad = pCantidad;
-        hijoIzquierdo = nullptr;
-        hijoDerecho = nullptr;
+        siguiente = nullptr;
     }
 
     int getId();
     std::string getNombre();
     double getPrecio();
     int getCantidad();
-    producto* getHijoIzquierdo() const { return hijoIzquierdo; }
-    producto* getHijoDerecho()  const { return hijoDerecho; }
+    producto* getSiguiente();
 
     void setId(int pId);
     void setNombre(const std::string& pNombre);
     void setPrecio(double pPrecio);
     void setCantidad(int pCantidad);
-    void setHijoIzquierdo(producto* nuevoHijoIzquierdo) { hijoIzquierdo = nuevoHijoIzquierdo; }
-    void setHijoDerecho (producto* nuevoHijoDerecho)     { hijoDerecho  = nuevoHijoDerecho;  }
+    void setSiguiente(producto* nuevoSiguiente);
 
     void imprimir();
 };
