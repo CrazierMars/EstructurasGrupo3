@@ -42,5 +42,5 @@ void producto::setHijoDerecho (producto* hijoDerecho){
 
 
 void producto::imprimir() {
-    std::cout << "ID: " << id << " | Nombre: " << nombre << " | Precio: " << precio << " | Cantidad: " << cantidad << std::endl;
+    std::cout << "\nID: " << id << " | Nombre: " << nombre << " | Precio: " << precio << " | Cantidad: " << cantidad << std::endl;
 }
