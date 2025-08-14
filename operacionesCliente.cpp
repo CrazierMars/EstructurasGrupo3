@@ -1,4 +1,5 @@
 #include "cliente.h"
+#include "arbolProductos.h"
 #include <iostream>
 
 using namespace std;
@@ -9,7 +10,7 @@ cliente::cliente(string nombre, string apellidos, string cedula, int edad, int p
     this->cedula = cedula;
     this->edad = edad;
     this->prioridad = prioridad;
-    this->productos = new listaProductos();
+    this->productos = new arbolProductos();
     this->siguiente = nullptr;
 }
 
@@ -37,7 +38,7 @@ int cliente::getPrioridad() {
     return prioridad;
 }
 
-listaProductos* cliente::getProductos() { 
+arbolProductos* cliente::getProductos() { 
     return productos; 
 }
 
@@ -65,7 +66,7 @@ void cliente::setPrioridad(int prioridad) {
     this->prioridad = prioridad;
 }
 
-void cliente::setProductos(listaProductos* productos) {
+void cliente::setProductos(arbolProductos* productos) {
     this->productos = productos;
 }
 
@@ -73,13 +74,13 @@ void cliente::setSiguiente(cliente* siguiente) {
     this->siguiente = siguiente; 
 }
 
-void cliente::agregarProducto(string nombre, double precio, int cantidad) {
-    productos->insertarFinal(nombre, precio, cantidad);
+void cliente::agregarProducto(string nombre, double precio, int cantidad, int padreId) {
+    productos->insertarNodo(nombre, precio, cantidad, padreId);
 }
 
 void cliente::imprimir() {
     string prioridadStr = (prioridad == 1) ? "Ordinario" : (prioridad == 2) ? "Regular" : "Preferencial";
     cout << "Nombre: " << nombre << " " << apellidos << " | Cédula: " << cedula << " | Edad: " << edad << " | Prioridad: " << prioridadStr << endl;
-    cout << "Productos comprados:" << endl;
-    productos->imprimirLista();
+    cout << "\nProductos comprados:" << endl;
+    productos->imprimir();
 }

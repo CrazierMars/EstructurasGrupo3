@@ -4,6 +4,9 @@
 int producto::getId() {
     return id;
 }
+int producto::getPadreId() {
+    return padreId;
+}
 std::string producto::getNombre() {
     return nombre;
 }
@@ -23,6 +26,9 @@ producto* producto::getHijoDerecho() {
 void producto::setId(int id) {
     this->id = id;
 }
+void producto::setPadreId(int padreId) {
+    this->padreId = padreId;
+}
 void producto::setNombre(const std::string& nombre) {
     this->nombre = nombre;
 }
@@ -36,8 +42,8 @@ void producto::setCantidad(int cantidad) {
 void producto::setHijoIzquierdo(producto* hijoIzquierdo) { 
     this->hijoIzquierdo = hijoIzquierdo; 
 }
-void producto::setHijoDerecho (producto* hijoDerecho){ 
-    this->hijoDerecho  = hijoDerecho;  
+void producto::setHijoDerecho(producto* hijoDerecho) {
+    this->hijoDerecho = hijoDerecho;
 }
 
 

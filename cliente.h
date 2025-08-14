@@ -1,5 +1,5 @@
 #include <string>
-#include "listaProductos.h"
+#include "arbolProductos.h"
 
 #ifndef CLIENTE_H
 #define CLIENTE_H
@@ -13,7 +13,7 @@ private:
     string cedula;
     int edad;
     int prioridad;
-    listaProductos* productos;
+    arbolProductos* productos;
     cliente* siguiente;
 
 public:
@@ -25,7 +25,7 @@ public:
     string getCedula();
     int getEdad();
     int getPrioridad();
-    listaProductos* getProductos();
+    arbolProductos* getProductos();
     cliente* getSiguiente();
 
     void setNombre(string nombre);
@@ -33,10 +33,10 @@ public:
     void setCedula(string cedula);
     void setEdad(int edad);
     void setPrioridad(int prioridad);
-    void setProductos(listaProductos* productos);
+    void setProductos(arbolProductos* productos);
     void setSiguiente(cliente* siguiente);
 
-    void agregarProducto(string nombre, double precio, int cantidad);
+    void agregarProducto(string nombre, double precio, int cantidad, int padreId);
     void imprimir();
 };
 

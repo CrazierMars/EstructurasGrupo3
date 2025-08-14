@@ -2,6 +2,7 @@
 #define ARBOL_PRODUCTOS_H
 
 #include <string>
+#include <functional>
 #include "producto.h"
 
 class arbolProductos {
@@ -10,25 +11,23 @@ private:
 
 public:
     arbolProductos() : raiz(nullptr) {}
-    ~arbolProductos(); // libera todo el árbol
+    ~arbolProductos();
 
-    // Acceso a la raíz
-    producto* getRaiz() const { return raiz; }
-    void setRaiz(producto* nuevaRaiz) { raiz = nuevaRaiz; }
+    producto* getRaiz();
+    void setRaiz(producto* nuevaRaiz);
 
-    // Operaciones básicas
-    void insertarNodo(int id,std::string nombre, double precio, int cantidad);
-    producto* buscarNodo (int llaveBuscar) const;
-    producto* buscarPadre(int llaveBuscar) const;
+    void insertarNodo(std::string nombre, double precio, int cantidad, int padreId = 0);
+    producto* buscarNodo(int id);
+    producto* buscarPadre(int id);
 
-    // Recorridos
-    void enOrden (producto* r) const;
-    void preOrden(producto* r) const;
-    void postOrden(producto* r) const;
+    void enOrden(producto* r, std::function<void(producto*)> visitar);
+    void preOrden(producto* r);
+    void postOrden(producto* r);
 
-    // Utilidades de eliminación
-    producto* getSucesor(producto* nodo) const; // sucesor in-order (mínimo del subárbol derecho)
-    void eliminar(int llaveEliminar);
+    producto* getSucesor(producto* nodo);
+    bool eliminar(int id);
+
+    void imprimir();
 };
 
 #endif // ARBOL_PRODUCTOS_H
